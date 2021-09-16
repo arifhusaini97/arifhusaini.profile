@@ -1,0 +1,58 @@
+/* Universal Selector */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+::selection {
+  background-color: var(--color-primary-3);
+  color: var(--color-white);
+}
+
+// Like html selector, but higher;
+:root {
+  //use custom css properties
+  --color-primary-3: #d94945;
+  --color-primary-3-2: #f17f71;
+  --color-primary-2: #f1d4b4;
+  --color-primary-2-1: #c0ae90;
+  --color-primary-1: #42363a;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-grey-light-1: #faf9f9;
+  --color-grey-dark-1: #333;
+
+  --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
+  --line: 1px solid var(--color-grey-light-2);
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+
+  min-height: 100%;
+  height: 100%;
+  min-width: 100%;
+  width: 100%;
+
+  box-sizing: border-box;
+  background-color: var(--color-primary-3);
+}
+
+h1 {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
