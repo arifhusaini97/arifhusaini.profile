@@ -13,7 +13,7 @@
   import HelloWorld from '@/components/HelloWorld.vue';
 
   export default {
-    name: 'HomeRun',
+    name: 'Home',
     components: {
       HelloWorld,
     },

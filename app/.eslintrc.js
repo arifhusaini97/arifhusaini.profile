@@ -20,19 +20,20 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/component-definition-name-casing': 'error',
     'vue/component-name-in-template-casing': 'error',
-    'vue/custom-event-name-casing': 'error',
+    'vue/custom-event-name-casing': ['error', 'kebab-case'],
     'vue/match-component-file-name': [
       'error',
       {
+        extensions: ['vue', 'js'],
         shouldMatchCase: true,
       },
     ],
-    'vue/name-property-casing': 'error',
+    'vue/name-property-casing': ['error', 'PascalCase'],
     'vue/no-dupe-keys': 'error',
     'vue/no-reserved-component-names': 'error',
-    'vue/prop-name-casing': 'error',
+    'vue/prop-name-casing': ['error', 'snake_case'],
     'vue/require-name-property': 'error',
-    'vue/html-quotes': 'error',
+    'vue/html-quotes': ['error', 'double', { avoidEscape: false }],
     'vue/max-len': [
       'error',
       {
@@ -71,11 +72,5 @@ module.exports = {
         jest: true,
       },
     },
-  ],
-
-  extends: [
-    'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    '@vue/prettier',
   ],
 };
