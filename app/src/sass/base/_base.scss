@@ -34,6 +34,14 @@ html {
   height: 100%;
   width: 100%;
   font-size: 62.5%;
+
+  transition: font-size 0.5s;
+  @include respond(tab-port) {
+    font-size: 50%; // 1rem=8px, 8/16=50% // width < 800
+  }
+  @include respond(phone) {
+    font-size: 43.75%; // 1rem=7px, 7/16=43.75%// width < 650
+  }
 }
 
 body {

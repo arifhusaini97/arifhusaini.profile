@@ -4,7 +4,6 @@
   margin: 7rem 20rem;
   background-color: var(--color-grey-light-1);
   box-shadow: var(--shadow-dark);
-
   min-height: calc(100vh - 14rem);
   max-height: 100vh;
   position: absolute;
@@ -19,6 +18,23 @@
   overflow-x: hidden;
 
   font-size: 1.4rem;
+  transition: all 0.5s;
+
+  @include respond(phone) {
+    margin: auto auto;
+
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+
+    min-width: 100vw;
+    width: 100vw;
+    max-width: 100vw;
+
+    border-radius: 0rem;
+
+    box-shadow: none;
+  }
 
   &__sidebar {
     background-color: var(--color-primary-1);
@@ -47,10 +63,12 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: auto auto;
+    // padding: auto auto;
 
     background-color: var(--color-primary-2);
   }
   &__content {
   }
+
+  @include clearfix;
 }

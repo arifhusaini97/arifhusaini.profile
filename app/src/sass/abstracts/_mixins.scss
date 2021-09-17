@@ -1,0 +1,32 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin respond($breakpoint) {
+  @if $breakpoint==phone {
+    // after several expert experiment, em is better than rem for media query
+    @media only screen and (max-width: 40.625em) {
+      // 650px
+      @content;
+    }
+  } @else if $breakpoint==tab-port {
+    @media only screen and (max-width: 50em) {
+      // 800px
+      @content;
+    }
+  } @else if $breakpoint==tab-land {
+    @media only screen and (max-width: 75em) {
+      // 1200px
+      @content;
+    }
+  } @else if $breakpoint==big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      // 1800px
+      @content;
+    }
+  }
+}
