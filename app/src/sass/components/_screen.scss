@@ -2,25 +2,32 @@
   min-width: calc(100vw - 40rem);
   max-width: 100vw;
   margin: 7rem 20rem;
-  background-color: var(--color-grey-light-1);
-  box-shadow: var(--shadow-dark);
   min-height: calc(100vh - 14rem);
   max-height: 100vh;
   position: absolute;
   border-radius: 2rem;
 
+  border-radius: 50px;
+  background: var(--color-white);
+  box-shadow: 35px 35px 70px var(--color-primary-1),
+    -35px -35px 70px var(--color-primary-2);
+
   display: grid;
-  grid-template-rows: minmax(min-content, 5rem) 1fr;
+  grid-template-rows: repeat(2, minmax(min-content, 5rem)) 1fr;
   grid-template-columns:
     [left-start] minmax(min-content, 20rem)
     [left-end right-start] minmax(20rem, 1fr) [right-end];
 
   overflow-x: hidden;
 
-  font-size: 1.4rem;
   transition: all 0.5s;
 
-  @include respond(phone) {
+  @include respond(tab-land) {
+    min-width: calc(100vw - 20rem);
+    margin: 3.5rem 10rem;
+    min-height: calc(100vh - 7rem);
+  }
+  @include respond(tab-port) {
     margin: auto auto;
 
     min-height: 100vh;
@@ -46,15 +53,12 @@
     flex-direction: column;
     justify-content: space-between;
 
-    &-navigation {
-      list-style: none;
-      margin-top: 3.5rem;
-    }
-    &-legal {
-      font-size: 1.2rem;
-      color: var(--color-grey-light-4);
-      text-align: center;
-      padding: 2.5rem;
+    // font-size: 1.4rem;
+    font-weight: 400;
+
+    @include respond(tab-port) {
+      grid-row: 2 / span 1;
+      grid-column: 1/-1;
     }
   }
   &__header {
@@ -65,9 +69,22 @@
     height: 100%;
     // padding: auto auto;
 
-    background-color: var(--color-primary-2);
+    background: linear-gradient(
+      145deg,
+      var(--color-primary-2),
+      var(--color-primary-2-1)
+    );
+    @include respond(tab-port) {
+      grid-row: 1 / span 1;
+      grid-column: 1/-1;
+    }
   }
   &__content {
+    grid-row: 2/-1;
+    @include respond(tab-port) {
+      grid-row: 3 / -1;
+      grid-column: 1/-1;
+    }
   }
 
   @include clearfix;

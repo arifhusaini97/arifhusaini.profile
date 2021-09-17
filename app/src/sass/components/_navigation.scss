@@ -10,3 +10,89 @@
     }
   }
 }
+
+.navigation {
+  @include respond(tab-port) {
+    padding: 1rem 1rem;
+  }
+  &-logo {
+    display: block;
+    height: 10rem;
+    width: 15rem;
+    margin: auto auto;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(assets/system_logo.png);
+    z-index: 10000;
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+  &-list {
+    list-style: none;
+
+    @include respond(tab-port) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__item {
+      position: relative;
+
+      cursor: pointer;
+      margin-bottom: 1rem;
+
+      @include respond(tab-port) {
+        margin-bottom: 0rem;
+      }
+
+      width: 100%;
+
+      &-link {
+        &:link,
+        &:visited {
+          color: var(--color-grey-light-1);
+          text-decoration: none;
+          text-transform: uppercase;
+          padding: 1.5rem 3rem;
+          display: flex;
+          align-items: center;
+
+          // z-index only applicable when we have specified position
+          position: relative;
+          z-index: 10;
+
+          @include respond(tab-port) {
+            justify-content: center;
+          }
+        }
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 3px;
+        background-color: var(--color-primary-3);
+        transform: scaleY(0);
+        transition: transform 0.4s, width 0.8s cubic-bezier(1, 0, 0, 1) 0.4s,
+          background-color 0.2s;
+        opacity: 50%;
+      }
+
+      &--active::before,
+      &:hover::before {
+        transform: scaleY(1);
+        width: 100%;
+      }
+
+      &:active::before {
+        background-color: var(--color-primary-3);
+      }
+    }
+  }
+}

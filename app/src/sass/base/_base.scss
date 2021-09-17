@@ -20,7 +20,7 @@
   --color-primary-2: #f1d4b4;
   --color-primary-2-1: #c0ae90;
   --color-primary-1: #42363a;
-  --color-white: #fff;
+  --color-white: #e0e0e0;
   --color-black: #000;
   --color-grey-light-1: #faf9f9;
   --color-grey-dark-1: #333;
@@ -28,23 +28,23 @@
   --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
   --line: 1px solid var(--color-grey-light-2);
+
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap');
 }
 
 html {
   height: 100%;
   width: 100%;
-  font-size: 62.5%;
+  font-size: 62.5%; // 10px
 
   transition: font-size 0.5s;
-  @include respond(tab-port) {
-    font-size: 50%; // 1rem=8px, 8/16=50% // width < 800
-  }
-  @include respond(phone) {
-    font-size: 43.75%; // 1rem=7px, 7/16=43.75%// width < 650
-  }
 }
 
 body {
+  font-family: 'Sora', sans-serif;
+
+  font-size: 1.6rem;
+  font-weight: 600;
   margin: 0;
 
   min-height: 100%;
@@ -54,6 +54,16 @@ body {
 
   box-sizing: border-box;
   background-color: var(--color-primary-3);
+
+  @include respond(tab-land) {
+    font-size: 1.6rem; // width < 800
+  }
+  @include respond(tab-port) {
+    font-size: 1.4rem; // width < 800
+  }
+  @include respond(phone) {
+    font-size: 1.2rem; // width < 650
+  }
 }
 
 h1 {
