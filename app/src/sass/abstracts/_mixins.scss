@@ -7,8 +7,15 @@
 }
 
 @mixin respond($breakpoint) {
-  @if $breakpoint==phone {
+  @if $breakpoint==broken {
     // after several expert experiment, em is better than rem for media query
+    @media only screen and (max-width: 18.75em),
+      screen and (max-height: 26.25em) {
+      // 300px width
+      // 420px height
+      @content;
+    }
+  } @else if$breakpoint==phone {
     @media only screen and (max-width: 40.625em) {
       // 650px
       @content;

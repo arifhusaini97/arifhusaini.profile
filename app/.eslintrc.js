@@ -6,7 +6,7 @@ module.exports = {
   },
 
   extends: [
-    'plugin:vue/vue3-essential',
+    'plugin:vue/strongly-recommended',
     'eslint:recommended',
     '@vue/prettier',
   ],
@@ -16,8 +16,8 @@ module.exports = {
   },
 
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-console': 'off',
+    'no-debugger': 'off',
     'vue/component-definition-name-casing': 'error',
     'vue/component-name-in-template-casing': 'error',
     'vue/custom-event-name-casing': ['error', 'kebab-case'],
@@ -55,11 +55,6 @@ module.exports = {
     'vue/new-line-between-multi-line-property': 'warn',
     'vue/padding-line-between-blocks': 'warn',
     'vue/static-class-names-order': 'warn',
-    // "vue/block-tag-newline": "error",
-    // "vue/html-closing-bracket-newline": "error",
-    // 'vue/multiline-html-element-content-newline': 'error',
-    // 'vue/singleline-html-element-content-newline': 'error',
-    // "vue/html-comment-content-newline": "warn",
   },
 
   overrides: [
