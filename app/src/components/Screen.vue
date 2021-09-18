@@ -2,39 +2,40 @@
   <div class="container">
     <div class="screen">
       <div class="screen__sidebar">
-        <div class="navigation">
-          <div class="navigation-logo"></div>
-          <ul class="navigation-list">
-            <li class="navigation-list__item navigation-list__item--active">
-              <a href="#" class="navigation-list__item-link">Global</a>
-            </li>
-            <li class="navigation-list__item">
-              <a href="#" class="navigation-list__item-link">List</a>
-            </li>
-            <li class="navigation-list__item">
-              <a href="#" class="navigation-list__item-link">Form</a>
-            </li>
-          </ul>
-        </div>
+        <Navigation :navigation_list_items="navigation_list_items" />
         <div class="legal">
           &copy; 2021 by arifhusaini.com.<br />All rights reserved.
         </div>
       </div>
       <div class="screen__header">
-        {{ msg }}
+        {{ header }}
       </div>
       <div class="screen__content">
-        {{ msg }}
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
+        <IconDetailsCard />
       </div>
     </div>
-    <div class="broken-screen">
-      <div class="broken-screen__logo-box">
+    <div class="screen-broken">
+      <div class="screen-broken__logo-box">
         <img
           src="../assets/system_logo.png"
           alt="Aniaxu Logo"
           class="logo--small" />
       </div>
-      <div class="broken-screen__message">
+      <div class="screen-broken__message">
         Your device is too narrow to display the contain.
       </div>
     </div>
@@ -42,13 +43,22 @@
 </template>
 
 <script>
+  import Navigation from '@/components/sub-components/Navigation';
+  import IconDetailsCard from '@/components/sub-components/IconDetailsCard';
   export default {
     name: 'Screen',
     props: {
-      msg: { type: String, required: true, default: screen },
+      header: { type: String, required: true },
+    },
+    components: { Navigation, IconDetailsCard },
+    data() {
+      return {
+        navigation_list_items: [
+          { name: 'global', url: '#', active: true },
+          { name: 'favourite', url: '#', active: false },
+          { name: 'canvas', url: '#', active: false },
+        ],
+      };
     },
   };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>

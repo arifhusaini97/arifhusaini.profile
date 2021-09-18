@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Screen :msg="msg" />
+    <Screen :header="title" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@
     },
 
     data() {
-      return { msg: 'arifhusaini.com' };
+      return { title: 'Rank' };
     },
 
     mounted() {

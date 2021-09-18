@@ -2,11 +2,13 @@ import { shallowMount } from '@vue/test-utils';
 import Screen from '@/components/Screen.vue';
 
 describe('Screen.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message';
+  it('renders props.header when passed', () => {
+    const header = 'RANK';
     const wrapper = shallowMount(Screen, {
-      props: { msg },
+      props: {
+        header,
+      },
     });
-    expect(wrapper.text()).toMatch(msg);
+    expect(wrapper.text()).toMatch(header);
   });
 });
