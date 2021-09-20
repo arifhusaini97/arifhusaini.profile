@@ -9,7 +9,7 @@
 @mixin respond($breakpoint) {
   @if $breakpoint==broken {
     // after several expert experiment, em is better than rem for media query
-    @media only screen and (max-width: 18.75em),
+    @media only screen and (max-width: 21.875em),
       screen and (max-height: 26.25em) {
       // 300px width
       // 420px height

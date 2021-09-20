@@ -11,22 +11,23 @@
         {{ header }}
       </div>
       <div class="screen__content">
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
-        <IconDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
+        <IndividualDetailsCard />
       </div>
+      <FloatingComposeButton />
     </div>
     <div class="screen-broken">
       <div class="screen-broken__logo-box">
@@ -44,19 +45,22 @@
 
 <script>
   import Navigation from '@/components/sub-components/Navigation';
-  import IconDetailsCard from '@/components/sub-components/IconDetailsCard';
+  import IndividualDetailsCard from '@/components/sub-components/IndividualDetailsCard';
+  import FloatingComposeButton from '@/components/sub-components/FloatingComposeButton';
+
   export default {
     name: 'Screen',
     props: {
       header: { type: String, required: true },
     },
-    components: { Navigation, IconDetailsCard },
+
+    components: { Navigation, IndividualDetailsCard, FloatingComposeButton },
     data() {
       return {
         navigation_list_items: [
-          { name: 'global', url: '#', active: true },
+          { name: 'podium', url: '#', active: true },
           { name: 'favourite', url: '#', active: false },
-          { name: 'canvas', url: '#', active: false },
+          { name: 'vote', url: '#', active: false },
         ],
       };
     },
