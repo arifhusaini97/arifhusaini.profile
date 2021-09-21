@@ -1,0 +1,19 @@
+.form {
+  &__input {
+    position: relative;
+    margin: auto auto;
+    font-family: inherit;
+    width: 80%;
+    padding: 1px 1rem;
+    border-radius: 5px;
+    border: none;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+
+    // border-bottom: 3px solid transparent;
+    &:focus {
+      outline: none;
+      border-bottom: 3px solid var(--color-primary-2-1);
+    }
+  }
+}
