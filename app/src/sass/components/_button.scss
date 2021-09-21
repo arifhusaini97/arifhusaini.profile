@@ -78,7 +78,7 @@
       var(--color-primary-2-1)
     );
     z-index: 10;
-    transition: all 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+    transition: all 0.1s ease;
 
     position: absolute;
     bottom: 5rem;
@@ -87,6 +87,13 @@
     flex-direction: row;
     padding: 1px 1rem;
     align-items: center;
+    @include clearfix;
+  }
+  &__checkbox:checked
+    ~ .floating-compose-button__background
+    > *:not(.form__checkbox) {
+    visibility: visible;
+    opacity: 1;
   }
   &__checkbox:checked ~ &__background {
     height: 5rem;
