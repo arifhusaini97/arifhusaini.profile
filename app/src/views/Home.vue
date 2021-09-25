@@ -6,7 +6,8 @@
 
 <script>
   // @ is an alias to /src
-  import Screen from '@/components/Screen.vue';
+  import Screen from '@/components/Screen';
+  import { PascalCaseToSentenceCase } from '@/js/converter-pascal-case';
 
   export default {
     name: 'Home',
@@ -14,8 +15,14 @@
       Screen,
     },
 
-    data() {
-      return { title: 'Rank' };
+    // data() {
+    //   return null;
+    // },
+
+    computed: {
+      title() {
+        return PascalCaseToSentenceCase(this.$route.name);
+      },
     },
 
     mounted() {
@@ -24,7 +31,7 @@
 
     methods: {
       functionMsg() {
-        // console.log(this.msg);
+        console.log(this.$route);
       },
     },
   };

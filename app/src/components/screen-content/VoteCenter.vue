@@ -8,14 +8,14 @@
         <table class="table">
           <tbody>
             <tr class="row">
-              <td class="cell cell--radius-left header">Category</td>
-              <td class="cell cell--radius-right">
+              <td class="cell cell--radius-top-left header">Category</td>
+              <td class="cell cell--radius-top-right">
                 <span class="text--single-line">Student in Campus</span>
               </td>
             </tr>
             <tr class="row">
-              <td class="cell cell--radius-left header">Session</td>
-              <td class="cell cell--radius-right">
+              <td class="cell cell--radius-bottom-left header">Session</td>
+              <td class="cell cell--radius-bottom-right">
                 <span class="text--single-line">June-December 2021</span>
               </td>
             </tr>

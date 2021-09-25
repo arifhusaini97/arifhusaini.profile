@@ -13,12 +13,19 @@
     }
   }
   .cell {
-    &--radius-left {
-      border-radius: 1rem 0 0 1rem;
+    &--radius-top-left {
+      border-top-left-radius: 1rem;
     }
 
-    &--radius-right {
-      border-radius: 0 1rem 1rem 0;
+    &--radius-bottom-left {
+      border-bottom-left-radius: 1rem;
+    }
+    &--radius-top-right {
+      border-top-right-radius: 1rem;
+    }
+
+    &--radius-bottom-right {
+      border-bottom-right-radius: 1rem;
     }
   }
 }

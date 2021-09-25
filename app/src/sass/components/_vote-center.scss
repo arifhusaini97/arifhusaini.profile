@@ -21,7 +21,7 @@
       color: var(--color-white);
       height: 100%;
       width: 100%;
-      border-radius: 2rem;
+      border-radius: 1rem;
       background-image: linear-gradient(
         to right bottom,
         var(--color-primary-2-1),
@@ -57,6 +57,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
 
     @include respond(tab-port) {
       flex-direction: column;
