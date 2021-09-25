@@ -2,7 +2,9 @@
   <div class="container">
     <div class="screen">
       <div class="screen__sidebar">
-        <Navigation :navigation_list_items="navigation_list_items" />
+        <Navigation
+          :navigation_list_items="navigation_list_items"
+          v-on:activate-navigation="activateNavigation" />
         <div class="legal">
           &copy; 2021 by arifhusaini.com.<br />All rights reserved.
         </div>
@@ -40,11 +42,28 @@
     data() {
       return {
         navigation_list_items: [
-          { name: 'podium', url: '/podium', active: true },
+          { name: 'podium', url: '/podium', active: false },
           { name: 'favourite', url: '/favourite', active: false },
           { name: 'vote', url: '/vote-center', active: false },
         ],
       };
+    },
+    created() {
+      this.navigation_list_items.forEach((item) => {
+        if (item.url === this.$route.path) {
+          return (item.active = true);
+        }
+      });
+    },
+    methods: {
+      activateNavigation(index) {
+        this.navigation_list_items.forEach((item) => {
+          if (item.active === true) {
+            return (item.active = false);
+          }
+        });
+        this.navigation_list_items[index].active = true;
+      },
     },
   };
 </script>

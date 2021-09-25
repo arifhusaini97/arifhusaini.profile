@@ -3,14 +3,14 @@
     <div class="navigation-logo"></div>
     <ul class="navigation-list">
       <li
-        v-for="item in navigation_list_items"
+        v-for="(item, index) in navigation_list_items"
         :key="item.name"
         class="navigation-list__item"
         :class="[{ 'navigation-list__item--active': item.active === true }]">
         <a
           href="#"
           class="navigation-list__item-link"
-          @click="redirect(item.url)"
+          @click="redirect(item.url, index)"
           >{{ item.name }}</a
         >
       </li>
@@ -25,8 +25,8 @@
       navigation_list_items: { type: Object, required: true },
     },
     methods: {
-      redirect(url) {
-        console.log(url);
+      redirect(url, index) {
+        this.$emit('activate-navigation', index);
         this.$router.push({ path: url });
       },
     },
