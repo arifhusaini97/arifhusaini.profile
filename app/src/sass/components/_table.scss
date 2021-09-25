@@ -1,0 +1,24 @@
+.table {
+  height: 100%;
+  width: 100%;
+  border-spacing: 0;
+  .header {
+    color: var(--color-white);
+    background-color: var(--color-primary-1);
+  }
+  .row {
+    background: #f6f6f6;
+    &:nth-of-type(odd) {
+      background: #e9e9e9;
+    }
+  }
+  .cell {
+    &--radius-left {
+      border-radius: 1rem 0 0 1rem;
+    }
+
+    &--radius-right {
+      border-radius: 0 1rem 1rem 0;
+    }
+  }
+}

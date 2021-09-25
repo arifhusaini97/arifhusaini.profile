@@ -50,8 +50,10 @@
     },
     created() {
       this.navigation_list_items.forEach((item) => {
-        if (item.url === this.$route.path) {
-          return (item.active = true);
+        if (this.$route) {
+          if (item.url === this.$route.path) {
+            return (item.active = true);
+          }
         }
       });
     },

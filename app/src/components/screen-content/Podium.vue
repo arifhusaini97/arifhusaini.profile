@@ -1,6 +1,6 @@
 <template>
   <div class="screen__content">
-    <div class="screen__main-content">
+    <div class="podium">
       <IndividualDetailsCard />
       <IndividualDetailsCard />
       <IndividualDetailsCard />

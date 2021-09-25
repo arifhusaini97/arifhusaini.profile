@@ -1,0 +1,14 @@
+.podium {
+  display: grid;
+  height: 100%;
+
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-auto-rows: calc(95% / 3);
+  grid-gap: 1.5rem;
+
+  overflow: auto;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  padding: 2rem;
+}
