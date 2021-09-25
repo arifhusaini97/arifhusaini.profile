@@ -24,7 +24,7 @@
 
     methods: {
       functionMsg() {
-        console.log(this.msg);
+        // console.log(this.msg);
       },
     },
   };

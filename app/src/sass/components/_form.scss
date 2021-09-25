@@ -6,12 +6,15 @@
     position: relative;
     margin: auto auto;
     font-family: inherit;
-    width: 80%;
-    padding: 1px 1rem;
+    width: 70%;
+    padding: 1px 4rem;
     border-radius: 5px;
     border: none;
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
+
+    margin-left: -3rem;
+    z-index: 99;
 
     &:focus {
       outline: none;
@@ -23,7 +26,7 @@
     display: none;
   }
   &__checkbox-icon {
-    display: none;
+    // display: none;
     // visibility: hidden;
     // opacity: 0;
     // transition: visibility 0.5s, opacity 0.25s linear;
@@ -31,5 +34,35 @@
   &__checkbox:checked + &__checkbox-icon .icon {
     position: relative;
     transform: rotate(180deg);
+  }
+
+  &-search__button {
+    border: none;
+    background-color: var(--color-grey-light-2);
+    z-index: 100;
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+  &-search__icon {
+    height: 2rem;
+    width: 2rem;
+    margin-left: 1rem;
+    fill: var(--color-grey-dark-3);
+  }
+
+  &-filter__background {
+    height: 85%;
+    width: 85%;
+    border-radius: 1rem;
+    background-color: var(--color-white);
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

@@ -68,8 +68,8 @@
     top: 1rem;
   }
   &__background {
-    height: 4rem;
-    width: 4rem;
+    height: 5rem;
+    width: 5rem;
     // This mean circle
     border-radius: 50%;
     background-image: linear-gradient(
@@ -78,32 +78,34 @@
       var(--color-primary-2-1)
     );
     z-index: 10;
-    transition: all 0.2s ease;
+    // transition: all 0.1s ease;
 
     position: absolute;
-    bottom: 5rem;
-    right: 5rem;
-    display: flex;
-    flex-direction: row;
-    padding: 1px 1rem;
-    align-items: center;
-    @include clearfix;
-  }
-  &__checkbox:checked
-    ~ .floating-compose-button__background
-    > *:not(.form__checkbox) {
-    display: inline-block;
-    visibility: visible;
-    opacity: 1;
-  }
-  &__checkbox:checked ~ &__background {
-    height: 5rem;
-    width: 275px;
-    // width: 100%;
-    // padding: 0 2rem;
-    border-radius: 5rem;
-
     bottom: 4.5rem;
     right: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1px 1rem;
+    justify-content: center;
+    overflow: hidden;
+
+    transition: width 0.2s ease, border-radius 0.2s ease, height 0.2s ease;
+
+    &-bottom {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    &-upper {
+      height: 0rem;
+      overflow: hidden;
+      transition: height 0.2s ease;
+      position: relative;
+    }
+  }
+  &__checkbox:checked ~ &__background {
+    width: 275px;
+    border-radius: 5rem;
+    border-bottom-right-radius: 2.5rem;
   }
 }
