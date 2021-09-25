@@ -6,6 +6,7 @@
           id="profile-image"
           class="card__image"
           src="@/assets/profile_1.jpg" />
+        <div class="card__image-number">1</div>
       </figure>
       <div class="card__description">
         <div class="card__description-header">

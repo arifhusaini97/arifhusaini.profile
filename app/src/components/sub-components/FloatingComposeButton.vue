@@ -49,7 +49,11 @@
     methods: {
       expandBackground($event) {
         if ($event.target.checked) {
-          this.backgroundHeight = 'height:40rem;';
+          this.backgroundHeight = `
+          height:40rem;
+          border-bottom-right-radius: 2.5rem;
+          `;
+
           this.backgroundHeightUpper = 'height:35rem;';
         } else {
           this.backgroundHeight = '';

@@ -10,24 +10,7 @@
       <div class="screen__header">
         {{ header }}
       </div>
-      <div class="screen__content">
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-        <IndividualDetailsCard />
-      </div>
-      <FloatingComposeButton />
+      <router-view />
     </div>
     <div class="screen-broken">
       <div class="screen-broken__logo-box">
@@ -45,22 +28,21 @@
 
 <script>
   import Navigation from '@/components/sub-components/Navigation';
-  import IndividualDetailsCard from '@/components/sub-components/IndividualDetailsCard';
-  import FloatingComposeButton from '@/components/sub-components/FloatingComposeButton';
 
   export default {
     name: 'Screen',
     props: {
       header: { type: String, required: true },
     },
-
-    components: { Navigation, IndividualDetailsCard, FloatingComposeButton },
+    components: {
+      Navigation,
+    },
     data() {
       return {
         navigation_list_items: [
-          { name: 'podium', url: '#', active: true },
-          { name: 'favourite', url: '#', active: false },
-          { name: 'vote', url: '#', active: false },
+          { name: 'podium', url: '/podium', active: true },
+          { name: 'favourite', url: '/favourite', active: false },
+          { name: 'vote', url: '/vote-center', active: false },
         ],
       };
     },

@@ -1,11 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
+import Podium from '@/components/screen-content/Podium';
+import Favourite from '@/components/screen-content/Favourite';
+import VoteCenter from '@/components/screen-content/VoteCenter';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home,
+    children: [
+      {
+        path: '/podium',
+        name: 'Podium',
+        component: Podium,
+      },
+      {
+        path: '/favourite',
+        name: 'Favourite',
+        component: Favourite,
+      },
+      {
+        path: '/vote-center',
+        name: 'VoteCenter',
+        component: VoteCenter,
+      },
+    ],
   },
   {
     path: '/about',

@@ -7,9 +7,12 @@
         :key="item.name"
         class="navigation-list__item"
         :class="[{ 'navigation-list__item--active': item.active === true }]">
-        <a :href="item.url" class="navigation-list__item-link">{{
-          item.name
-        }}</a>
+        <a
+          href="#"
+          class="navigation-list__item-link"
+          @click="redirect(item.url)"
+          >{{ item.name }}</a
+        >
       </li>
     </ul>
   </div>
@@ -20,6 +23,12 @@
     name: 'Navigation',
     props: {
       navigation_list_items: { type: Object, required: true },
+    },
+    methods: {
+      redirect(url) {
+        console.log(url);
+        this.$router.push({ path: url });
+      },
     },
   };
 </script>
