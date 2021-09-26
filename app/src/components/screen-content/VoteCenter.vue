@@ -2,7 +2,7 @@
   <div class="screen__content">
     <div class="vote-center">
       <div class="vote-center__question-title">
-        <span class="text--title center">A Better High School Student</span>
+        <span class="center text--title">A Better High School Student</span>
       </div>
       <div class="vote-center__question-detail">
         <table class="table">

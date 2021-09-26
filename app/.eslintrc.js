@@ -68,4 +68,8 @@ module.exports = {
       },
     },
   ],
+
+  globals: {
+    helper: 'writable',
+  },
 };

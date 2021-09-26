@@ -24,6 +24,7 @@
     props: {
       navigation_list_items: { type: Object, required: true },
     },
+
     methods: {
       redirect(url, index) {
         this.$emit('activate-navigation', index);

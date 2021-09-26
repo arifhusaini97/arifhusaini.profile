@@ -7,17 +7,14 @@
 <script>
   // @ is an alias to /src
   import Screen from '@/components/Screen';
-  import { PascalCaseToSentenceCase } from '@/js/converter-pascal-case';
+  import { PascalCaseToSentenceCase } from '@/js/functions/converter-pascal-case';
+  // import helper from '@/js/functions/helper';
 
   export default {
     name: 'Home',
     components: {
       Screen,
     },
-
-    // data() {
-    //   return null;
-    // },
 
     computed: {
       title() {
@@ -31,7 +28,7 @@
 
     methods: {
       functionMsg() {
-        console.log(this.$route);
+        this.helper.debug();
       },
     },
   };

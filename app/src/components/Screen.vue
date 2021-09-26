@@ -4,7 +4,7 @@
       <div class="screen__sidebar">
         <Navigation
           :navigation_list_items="navigation_list_items"
-          v-on:activate-navigation="activateNavigation" />
+          @activate-navigation="activateNavigation" />
         <div class="legal">
           &copy; 2021 by arifhusaini.com.<br />All rights reserved.
         </div>
@@ -36,9 +36,11 @@
     props: {
       header: { type: String, required: true },
     },
+
     components: {
       Navigation,
     },
+
     data() {
       return {
         navigation_list_items: [
@@ -48,6 +50,7 @@
         ],
       };
     },
+
     created() {
       this.navigation_list_items.forEach((item) => {
         if (this.$route) {
@@ -57,6 +60,7 @@
         }
       });
     },
+
     methods: {
       activateNavigation(index) {
         this.navigation_list_items.forEach((item) => {
