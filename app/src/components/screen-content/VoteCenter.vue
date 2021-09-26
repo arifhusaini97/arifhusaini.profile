@@ -23,7 +23,7 @@
         </table>
       </div>
       <div class="vote-center__timer">
-        ----------------------------------------------------------------
+        <Timer />
       </div>
       <div class="vote-center__sheet">
         <div class="vote-center__sheet-candidate">Candidate 1</div>
@@ -35,8 +35,10 @@
 </template>
 
 <script>
+  import Timer from '@/components/sub-components/Timer';
   export default {
     name: 'VoteCenter',
+    components: { Timer },
   };
 </script>
 

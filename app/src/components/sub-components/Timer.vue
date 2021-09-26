@@ -1,0 +1,116 @@
+<template>
+  <div id="timer" class="timer">
+    <span
+      id="timer-bar"
+      class="timer-bar"
+      :class="timer_status"
+      :style="barStyle"></span>
+    <div id="timer-number" class="timer-number">{{ display }}</div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'TimeBar',
+    data() {
+      return {
+        display: '00:00',
+        timer: 2 / 6,
+        rest: 1,
+        toggle: true,
+        barStyle: '',
+        pomInterval: null,
+        pomTimeout: null,
+        sound: new Audio(
+          'http://www.freesound.org/data/previews/22/22627_7037-lq.mp3',
+        ),
+      };
+    },
+
+    created() {
+      this.restartTimer();
+      document.elementFromPoint(0, 0).click();
+    },
+
+    unmounted() {
+      this.resetTimer();
+    },
+
+    computed: {
+      timer_status: function () {
+        return this.toggle === true
+          ? 'timer-background-run'
+          : 'timer-background-rest';
+      },
+    },
+
+    methods: {
+      startTimer() {
+        // Set initial variables within function scope
+        var limit;
+        var countdown;
+
+        // Toggle between timer and rest countdowns
+        if (this.toggle) {
+          limit = this.timer;
+          countdown = this.timer;
+          // this.toggle = false;
+        } else {
+          limit = this.rest;
+          countdown = this.rest;
+          // this.toggle = true;
+        }
+
+        // Set initial countdown value and display it
+        countdown = countdown * 60;
+        var minutes = [
+          Math.floor(countdown / 60),
+          countdown % 60 < 10 ? '0' + (countdown % 60) : countdown % 60,
+        ];
+        this.display = minutes.join(':').toString();
+
+        // Set initial barWidth value and display it
+        var barWidth = (countdown / (limit * 60)) * 100;
+        this.barStyle = 'width: ' + barWidth + '%;';
+
+        this.pomInterval = setInterval(() => {
+          // Increment countdown down
+          countdown--;
+
+          // Update minutes with new countdown value and display it
+          minutes = [Math.floor(countdown / 60), countdown % 60];
+          if (minutes[1] < 10) {
+            minutes[1] = '0' + minutes[1];
+          }
+          this.display = minutes.join(':').toString();
+
+          // Update barWidth with new countdown value and display it
+          barWidth = (countdown / (limit * 60)) * 100;
+          this.barStyle = 'width: ' + barWidth + '%;';
+        }, 1000);
+
+        // Reset timer after countdown
+        this.pomTimeout = setTimeout(() => {
+          clearInterval(this.pomInterval);
+          this.sound.play();
+          this.startTimer();
+        }, limit * 60000);
+      },
+
+      restartTimer() {
+        clearInterval(this.pomInterval);
+        clearTimeout(this.pomTimeout);
+        this.toggle = true;
+        this.startTimer();
+      },
+
+      resetTimer() {
+        clearInterval(this.pomInterval);
+        clearTimeout(this.pomTimeout);
+        this.display = '';
+      },
+    },
+  };
+</script>
+
+<style></style>
