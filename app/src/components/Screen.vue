@@ -42,13 +42,7 @@
     },
 
     data() {
-      return {
-        navigation_list_items: [
-          { name: 'podium', url: '/podium', active: false },
-          { name: 'favourite', url: '/favourite', active: false },
-          { name: 'vote', url: '/vote-center', active: false },
-        ],
-      };
+      return {};
     },
 
     created() {
@@ -61,14 +55,16 @@
       });
     },
 
+    computed: {
+      navigation_list_items() {
+        let data = this.$store.getters['screen/getNavigationListItems'];
+        return data;
+      },
+    },
+
     methods: {
       activateNavigation(index) {
-        this.navigation_list_items.forEach((item) => {
-          if (item.active === true) {
-            return (item.active = false);
-          }
-        });
-        this.navigation_list_items[index].active = true;
+        console.log(index);
       },
     },
   };

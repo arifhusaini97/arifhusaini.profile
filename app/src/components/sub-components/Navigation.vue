@@ -8,9 +8,9 @@
         class="navigation-list__item"
         :class="[{ 'navigation-list__item--active': item.active === true }]">
         <a
-          href="#"
+          href=""
           class="navigation-list__item-link"
-          @click="redirect(item.url, index)"
+          @click.prevent="redirect(item.url, index)"
           >{{ item.name }}</a
         >
       </li>

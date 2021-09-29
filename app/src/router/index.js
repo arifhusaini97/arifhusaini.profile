@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import Podium from '@/components/screen-content/Podium';
 import Favourite from '@/components/screen-content/Favourite';
 import VoteCenter from '@/components/screen-content/VoteCenter';
+import store from '@/store';
 
 const routes = [
   {
@@ -41,6 +42,26 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+// window.popStateDetected = false;
+// window.addEventListener('popstate', () => {
+//   window.popStateDetected = true;
+// });
+
+router.afterEach((to) => {
+  // const IsItABackButton = window.popStateDetected;
+
+  // if (IsItABackButton) {
+  var payload = {
+    index: null,
+    path: to.path,
+  };
+
+  store.dispatch('screen/activateNavigation', payload);
+  // }
+
+  window.popStateDetected = false;
 });
 
 export default router;

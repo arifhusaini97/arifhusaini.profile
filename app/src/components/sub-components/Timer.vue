@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: 'TimeBar',
+    name: 'Timer',
     data() {
       return {
         display: '00:00',
