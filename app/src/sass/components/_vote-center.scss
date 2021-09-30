@@ -63,6 +63,12 @@
     @include respond(tab-port) {
       flex-direction: column;
     }
+
+    &-candidate {
+      height: 100%;
+      width: 100%;
+      padding: 2.5rem;
+    }
   }
   &__paginator {
     grid-column: 1/-1;

@@ -26,8 +26,12 @@
         <Timer />
       </div>
       <div class="vote-center__sheet">
-        <div class="vote-center__sheet-candidate"><VoteCandidateCard /></div>
-        <div class="vote-center__sheet-candidate"><VoteCandidateCard /></div>
+        <div class="vote-center__sheet-candidate">
+          <IndividualDetailsCard />
+        </div>
+        <div class="vote-center__sheet-candidate">
+          <IndividualDetailsCard />
+        </div>
       </div>
       <div class="vote-center__paginator">1/10</div>
     </div>
@@ -36,10 +40,10 @@
 
 <script>
   import Timer from '@/components/sub-components/Timer';
-  import VoteCandidateCard from '@/components/sub-components/VoteCandidateCard';
+  import IndividualDetailsCard from '@/components/sub-components/IndividualDetailsCard';
   export default {
     name: 'VoteCenter',
-    components: { Timer, VoteCandidateCard },
+    components: { Timer, IndividualDetailsCard },
   };
 </script>
 
