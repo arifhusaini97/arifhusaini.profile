@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="custom_class">
     <div class="card">
       <figure class="card__image-shape">
         <img
@@ -30,6 +30,9 @@
 <script>
   export default {
     name: 'IndividualDetailsCard',
+    props: {
+      custom_class: { type: String, required: false },
+    },
   };
 </script>
 

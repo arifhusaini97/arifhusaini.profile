@@ -45,6 +45,14 @@
     display: none;
   }
 
+  // @include respond(phone-narrow-height) {
+  //   display: none;
+  // }
+
+  // @include respond(phone-narrow-width) {
+  //   display: none;
+  // }
+
   &__sidebar {
     background-color: var(--color-primary-1);
     color: var(--color-white);
@@ -104,6 +112,18 @@
     flex-direction: column;
     justify-content: center;
   }
+
+  // @include respond(phone-narrow-height) {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  // }
+
+  // @include respond(phone-narrow-width) {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  // }
 
   top: 0;
   left: 0;

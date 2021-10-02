@@ -1,9 +1,14 @@
 <template>
   <div class="screen__content">
     <div class="grid">
-      <IndividualDetailsCard />
-      <IndividualDetailsCard />
-      <IndividualDetailsCard />
+      <IndividualDetailsCard
+        custom_class="card__border
+        card__border-favourite
+        card__border-favourite--active" />
+      <IndividualDetailsCard
+        custom_class="card__border card__border-favourite" />
+      <IndividualDetailsCard
+        custom_class="card__border card__border-favourite" />
     </div>
   </div>
 </template>

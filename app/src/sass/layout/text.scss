@@ -6,6 +6,9 @@
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
+    @include respond(tab-port) {
+      -webkit-line-clamp: 1;
+    }
   }
   &--single-line {
     display: -webkit-box;

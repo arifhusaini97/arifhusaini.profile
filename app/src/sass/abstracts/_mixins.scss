@@ -6,28 +6,75 @@
   }
 }
 
+@mixin magic-border($width, $color, $duration, $direction) {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: calc(100% + #{$width * 2});
+    height: calc(100% + #{$width * 2});
+    top: calc(#{$width}/ -1);
+    left: calc(#{$width}/ -1);
+    background: linear-gradient(to right, $color 0%, $color 100%),
+      linear-gradient(to top, $color 50%, transparent 50%),
+      linear-gradient(to top, $color 50%, transparent 50%),
+      linear-gradient(to right, $color 0%, $color 100%),
+      linear-gradient(to left, $color 0%, $color 100%);
+    background-size: 100% $width, $width 200%, $width 200%, 0% $width,
+      0% $width;
+    background-position: 50% 100%, 0% 0%, 100% 0%, 100% 0%, 0% 0%;
+    background-repeat: no-repeat, no-repeat;
+    transition: transform $duration ease-in-out,
+      background-position $duration ease-in-out,
+      background-size $duration ease-in-out;
+    transform: scaleX(0) rotate(180deg * $direction);
+    transition-delay: $duration * 2, $duration, 0s;
+    border-radius: 1rem;
+  }
+
+  &:hover {
+    &:before {
+      background-size: 200% $width, $width 400%, $width 400%, 55% $width,
+        55% $width;
+      background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
+      transform: scaleX(1) rotate(180deg * $direction);
+      transition-delay: 0s, $duration, $duration * 2;
+    }
+  }
+  &--active {
+    &:before {
+      background-size: 200% $width, $width 400%, $width 400%, 55% $width,
+        55% $width;
+      background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
+      transform: scaleX(1) rotate(180deg * $direction);
+      transition-delay: 0s, $duration, $duration * 2;
+    }
+  }
+}
+
 @mixin respond($breakpoint) {
   @if $breakpoint==broken {
     // after several expert experiment, em is better than rem for media query
     @media only screen and (max-width: 21.875em),
       screen and (max-height: 26.25em) {
-      // 300px width
+      // 350px width
       // 420px height
       @content;
     }
-  } @else if$breakpoint==phone-narrow-height {
-    @media only screen and (max-width: 25.3125em) and (max-height: 50em) {
+  } @else if $breakpoint==phone-narrow-height {
+    @media only screen and (max-width: 25.3125em) and (max-height: 48.4375em) {
       // 405 width
-      // 800px height
+      // 775px height
       @content;
     }
-  } @else if$breakpoint==phone-narrow-width {
+  } @else if $breakpoint==phone-narrow-width {
     @media only screen and (max-width: 68.75em) and (max-height: 29.6875em) {
       // 1100px width
       // 475px height
       @content;
     }
-  } @else if$breakpoint==phone {
+  } @else if $breakpoint==phone {
     @media only screen and (max-width: 40.625em) {
       // 650px
       @content;

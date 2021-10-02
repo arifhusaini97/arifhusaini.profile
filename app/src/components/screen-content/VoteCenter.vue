@@ -2,7 +2,12 @@
   <div class="screen__content">
     <div class="vote-center">
       <div class="vote-center__question-title">
-        <span class="center text--title">A Better High School Student</span>
+        <span class="center text--title"
+          >A Better High School StudentA Better High School StudentA Better
+          High School StudentA Better High School StudentA Better High School
+          StudentA Better High School StudentA Better High School StudentA
+          Better High School Student</span
+        >
       </div>
       <div class="vote-center__question-detail">
         <table class="table">
@@ -26,14 +31,24 @@
         <Timer />
       </div>
       <div class="vote-center__sheet">
-        <div class="vote-center__sheet-candidate">
-          <IndividualDetailsCard />
+        <div
+          class="
+            vote-center__sheet-candidate vote-center__sheet-candidate--active
+          ">
+          <IndividualDetailsCard
+            custom_class="card__border
+            card__border-vote
+            card__border-vote--active" />
         </div>
         <div class="vote-center__sheet-candidate">
-          <IndividualDetailsCard />
+          <IndividualDetailsCard
+            custom_class="card__border card__border-vote" />
         </div>
       </div>
-      <div class="vote-center__paginator">1/10</div>
+      <div class="vote-center__paginator">
+        <span class="vote-center__paginator-current">1</span
+        ><span class="vote-center__paginator-total">10</span>
+      </div>
     </div>
   </div>
 </template>

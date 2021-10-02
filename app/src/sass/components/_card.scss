@@ -11,7 +11,7 @@
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4.5px);
   -webkit-backdrop-filter: blur(4.5px);
-  border-radius: 10px;
+  border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   top: 50%;
@@ -86,6 +86,26 @@
     }
     &-voters {
       align-self: end;
+    }
+  }
+  &__border {
+    &:hover {
+      transform: scale(1.025);
+      box-shadow: 0 0px 2rem rgba(var(--color-black), 0.2);
+    }
+
+    &:active,
+    &:focus {
+      /* transform: translateY(-1px); */
+      outline: none;
+      transform: scale(1.0025);
+      box-shadow: 0 0px 1rem rgba(var(--color-black), 0.2);
+    }
+    &-vote {
+      @include magic-border(1rem, var(--color-primary-1), 0.2s, 1);
+    }
+    &-favourite {
+      @include magic-border(0.5rem, var(--color-primary-3), 0.2s, 1);
     }
   }
 }
