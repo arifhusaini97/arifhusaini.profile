@@ -2,13 +2,15 @@
   <div class="screen__content">
     <div class="grid">
       <IndividualDetailsCard
-        custom_class="card__border
-        card__border-favourite
-        card__border-favourite--active" />
+        custom_class="card-candidate__border
+        card-candidate__border-favourite
+        card-candidate__border-favourite--active" />
       <IndividualDetailsCard
-        custom_class="card__border card__border-favourite" />
+        custom_class="card-candidate__border
+        card-candidate__border-favourite" />
       <IndividualDetailsCard
-        custom_class="card__border card__border-favourite" />
+        custom_class="card-candidate__border
+        card-candidate__border-favourite" />
     </div>
   </div>
 </template>

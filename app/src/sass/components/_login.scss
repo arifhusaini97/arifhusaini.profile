@@ -1,0 +1,31 @@
+.login {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+  padding: 2rem;
+  grid-gap: 1rem;
+  grid-template-rows: 0.5fr 1.5fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'head head'
+    'auth note';
+
+  &__head {
+    grid-area: head;
+    width: 70%;
+  }
+
+  &__auth {
+    grid-area: auth;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__note {
+    grid-area: note;
+    height: 100%;
+    width: 100%;
+  }
+}

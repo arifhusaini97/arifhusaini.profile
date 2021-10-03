@@ -36,13 +36,13 @@
             vote-center__sheet-candidate vote-center__sheet-candidate--active
           ">
           <IndividualDetailsCard
-            custom_class="card__border
-            card__border-vote
-            card__border-vote--active" />
+            custom_class="card-candidate__border
+            card-candidate__border-vote
+            card-candidate__border-vote--active" />
         </div>
         <div class="vote-center__sheet-candidate">
           <IndividualDetailsCard
-            custom_class="card__border card__border-vote" />
+            custom_class="card-candidate__border card-candidate__border-vote" />
         </div>
       </div>
       <div class="vote-center__paginator">

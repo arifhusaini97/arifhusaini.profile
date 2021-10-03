@@ -7,7 +7,7 @@
   position: absolute;
 
   border-radius: 5rem;
-  background: var(--color-white);
+  background: var(--color-white-dark);
   box-shadow: 35px 35px 70px var(--color-primary-1),
     -35px -35px 70px var(--color-primary-2);
 
@@ -55,7 +55,7 @@
 
   &__sidebar {
     background-color: var(--color-primary-1);
-    color: var(--color-white);
+    color: var(--color-white-dark);
     flex: 0 0 20%;
     grid-row: 1/-1;
 
@@ -131,7 +131,7 @@
   width: 100vw;
 
   color: var(--color-black);
-  background-color: var(--color-white);
+  background-color: var(--color-white-dark);
   // display: flex;
   // flex-direction: column;
   // justify-content: start;

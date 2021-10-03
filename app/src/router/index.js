@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
+import Login from '@/components/screen-content/Login';
 import Podium from '@/components/screen-content/Podium';
 import Favourite from '@/components/screen-content/Favourite';
 import VoteCenter from '@/components/screen-content/VoteCenter';
@@ -12,6 +13,11 @@ const routes = [
     component: Home,
     children: [
       {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+      },
+      {
         path: '/podium',
         name: 'Podium',
         component: Podium,
@@ -20,11 +26,17 @@ const routes = [
         path: '/favourite',
         name: 'Favourite',
         component: Favourite,
+        meta: {
+          requiresAuth: true,
+        },
       },
       {
         path: '/vote-center',
         name: 'VoteCenter',
         component: VoteCenter,
+        meta: {
+          requiresAuth: true,
+        },
       },
     ],
   },
@@ -44,22 +56,25 @@ const router = createRouter({
   routes,
 });
 
-// window.popStateDetected = false;
-// window.addEventListener('popstate', () => {
-//   window.popStateDetected = true;
-// });
+router.beforeEach((to, from, next) => {
+  if (!to.matched.some((record) => record.meta.requiresAuth)) {
+    next();
+    return;
+  }
+  if (store.state.session.is_logged_in) {
+    next();
+  } else {
+    next({ name: 'Login' });
+  }
+});
 
 router.afterEach((to) => {
-  // const IsItABackButton = window.popStateDetected;
-
-  // if (IsItABackButton) {
   var payload = {
     index: null,
     path: to.path,
   };
 
   store.dispatch('screen/activateNavigation', payload);
-  // }
 
   window.popStateDetected = false;
 });
