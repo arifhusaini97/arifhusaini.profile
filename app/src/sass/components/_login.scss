@@ -12,9 +12,35 @@
     'head head'
     'auth note';
 
+  @media only screen and (max-height: 37.5em) {
+    // 600px
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'auth note';
+  }
+
+  @media only screen and (max-width: 60.9375em) {
+    // 975px
+    grid-template-rows: 0.25fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'head'
+      'auth'
+      'note';
+  }
+
+  // @media only screen and (max-height: 37.5em) {
+  //   // 600px
+  //   grid-template-rows: 0.25fr 1.5fr;
+  // }
+
   &__head {
     grid-area: head;
     width: 70%;
+    @media only screen and (max-height: 37.5em) {
+      // 600px
+      display: none;
+    }
   }
 
   &__auth {
