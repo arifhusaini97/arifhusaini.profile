@@ -6,28 +6,39 @@
           id="profile-image"
           class="card-candidate__image"
           src="@/assets/profile_1.jpg" />
-        <div class="card-candidate__image-number">1</div>
+        <div class="card-candidate__image-number">{{ person.rank }}</div>
       </figure>
       <div class="card-candidate__description">
         <div class="card-candidate__description-header">
-          <div class="card-candidate__description-header-name">
-            @arifhusaini97
+          <div
+            class="card-candidate__description-header-name text--single-line">
+            <!-- @arifhusaini97 -->
+            {{ person.username }}
           </div>
           <div class="card-candidate__description-header-region">
-            <div class="card-candidate__description-header-region-flag">
+            <div class="card-candidate__description-header-region-flag pr-1">
               &copy;
             </div>
-            <div class="card-candidate__description-header-region-name">
-              malaysia
+            <div
+              class="
+                card-candidate__description-header-region-name
+                text--single-line
+              ">
+              <!-- malaysia -->
+              {{ person.represent }}
             </div>
           </div>
         </div>
         <div class="card-candidate__description-details">
+          <!-- student with many skills and dedication who strive for the best
           student with many skills and dedication who strive for the best
-          student with many skills and dedication who strive for the best
-          student with many skills and dedication who strive for the best
+          student with many skills and dedication who strive for the best -->
+          {{ person.description }}
         </div>
-        <div class="card-candidate__description-voters">200/350</div>
+        <div class="card-candidate__description-voters">
+          <!-- 200/350 -->
+          {{ person.totalVoted }}/{{ person.totalAppearances }}
+        </div>
       </div>
     </div>
   </div>
@@ -38,6 +49,22 @@
     name: 'IndividualDetailsCard',
     props: {
       custom_class: { default: '', type: String, required: false },
+      person: {
+        default: () => {
+          return {
+            rank: 12345,
+            username: 'usernameusernameusernameusernameusername',
+            represent: 'representusernameusernameusernameusername',
+            description:
+              'descriptionusern ameusernameus  ernameusername ernameusername',
+            totalVoted: 10,
+            totalAppearances: 20,
+          };
+        },
+
+        type: Object,
+        required: true,
+      },
     },
   };
 </script>

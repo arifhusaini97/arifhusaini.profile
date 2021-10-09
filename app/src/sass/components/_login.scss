@@ -5,7 +5,7 @@
   justify-items: center;
   align-items: center;
   padding: 2rem;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
   grid-template-rows: 0.5fr 1.5fr;
   grid-template-columns: [auth-start] 1fr [auth-end note-start] 1fr [note-end];
   grid-template-areas:

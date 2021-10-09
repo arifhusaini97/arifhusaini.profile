@@ -16,8 +16,10 @@
             v-if="session.is_logged_in"
             @click="logout"
             style="cursor: pointer"
-            >🚪</span
-          ><router-link :to="{ name: 'Login' }" v-else>🔑</router-link>
+            >🚪<small class="px-1">logout</small></span
+          ><router-link :to="{ name: 'Login' }" v-else
+            >🔑<small class="px-1">login</small></router-link
+          >
         </div>
       </div>
       <router-view />
