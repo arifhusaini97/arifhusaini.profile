@@ -17,7 +17,7 @@
           </div>
           <div class="card-candidate__description-header-region">
             <div class="card-candidate__description-header-region-flag pr-1">
-              &copy;
+              {{ person.represent.flag }}
             </div>
             <div
               class="
@@ -25,7 +25,7 @@
                 text--single-line
               ">
               <!-- malaysia -->
-              {{ person.represent }}
+              {{ person.represent.name }}
             </div>
           </div>
         </div>
@@ -54,7 +54,10 @@
           return {
             rank: 12345,
             username: 'usernameusernameusernameusernameusername',
-            represent: 'representusernameusernameusernameusername',
+            represent: {
+              flag: '🏳',
+              name: 'representusernameusernameusernameusername',
+            },
             description:
               'descriptionusern ameusernameus  ernameusername ernameusername',
             totalVoted: 10,
