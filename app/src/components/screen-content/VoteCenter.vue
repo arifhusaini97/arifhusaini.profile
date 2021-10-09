@@ -31,7 +31,7 @@
         <Timer />
       </div>
       <div class="vote-center__sheet">
-        <div
+        <!-- <div
           class="
             vote-center__sheet-candidate vote-center__sheet-candidate--active
           ">
@@ -39,6 +39,10 @@
             custom_class="card-candidate__border
             card-candidate__border-vote
             card-candidate__border-vote--active" />
+        </div> -->
+        <div class="vote-center__sheet-candidate">
+          <IndividualDetailsCard
+            custom_class="card-candidate__border card-candidate__border-vote" />
         </div>
         <div class="vote-center__sheet-candidate">
           <IndividualDetailsCard
