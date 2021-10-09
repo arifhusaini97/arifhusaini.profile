@@ -42,7 +42,7 @@
     },
 
     data() {
-      return {};
+      return { header2: 'test' };
     },
 
     created() {

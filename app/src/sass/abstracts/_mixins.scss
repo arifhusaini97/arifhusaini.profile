@@ -6,6 +6,26 @@
   }
 }
 
+@mixin background-blue {
+  background-color: #4a77d4;
+  background-image: -moz-linear-gradient(180deg, #6eb6de, #4a77d4);
+  background-image: -ms-linear-gradient(180deg, #6eb6de, #4a77d4);
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    from(#6eb6de),
+    to(#4a77d4)
+  );
+  background-image: -webkit-linear-gradient(180deg, #6eb6de, #4a77d4);
+  background-image: -o-linear-gradient(180deg, #6eb6de, #4a77d4);
+  background-image: linear-gradient(180deg, #6eb6de, #4a77d4);
+  border: 1px solid #3762bc;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: var(--font-narrow-sora);
+}
+
 @mixin magic-border($width, $color, $duration, $direction) {
   position: relative;
 

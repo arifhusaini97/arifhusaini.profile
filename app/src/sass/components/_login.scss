@@ -7,7 +7,7 @@
   padding: 2rem;
   grid-gap: 1rem;
   grid-template-rows: 0.5fr 1.5fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: [auth-start] 1fr [auth-end note-start] 1fr [note-end];
   grid-template-areas:
     'head head'
     'auth note';
@@ -21,7 +21,10 @@
 
   @media only screen and (max-width: 60.9375em) {
     // 975px
-    grid-template-rows: 0.25fr 1fr 1fr;
+    grid-template-rows:
+      0.25fr [auth-start]
+      1fr [auth-end note-start]
+      1fr [note-end];
     grid-template-columns: 1fr;
     grid-template-areas:
       'head'
@@ -47,11 +50,14 @@
     grid-area: auth;
     height: 100%;
     width: 100%;
+
+    transition: all 0.2s;
   }
 
   &__note {
     grid-area: note;
     height: 100%;
     width: 100%;
+    transition: all 0.2s;
   }
 }

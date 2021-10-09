@@ -26,9 +26,6 @@ const routes = [
         path: '/favourite',
         name: 'Favourite',
         component: Favourite,
-        meta: {
-          requiresAuth: true,
-        },
       },
       {
         path: '/vote-center',

@@ -3,3 +3,11 @@
   height: 100%;
   position: relative;
 }
+
+.register {
+  &-button {
+    &__checkbox {
+      display: none;
+    }
+  }
+}

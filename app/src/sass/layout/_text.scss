@@ -1,0 +1,21 @@
+.text {
+  &--title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @include respond(tab-port) {
+      -webkit-line-clamp: 1;
+    }
+  }
+  &--single-line {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
