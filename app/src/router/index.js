@@ -8,7 +8,20 @@ import store from '@/store';
 
 const routes = [
   {
-    path: '/',
+    name: 'Default',
+    beforeEnter: (to, from, next) => {
+      if (store.state.session.is_logged_in) {
+        return next({
+          name: 'Podium',
+        });
+      } else {
+        return next({
+          name: 'Login',
+        });
+      }
+    },
+  },
+  {
     name: 'Home',
     component: Home,
     children: [
@@ -16,6 +29,9 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: Login,
+        meta: {
+          requiresAuth: false,
+        },
       },
       {
         path: '/podium',
@@ -40,11 +56,11 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () => import('../views/About.vue'),
+  },
+  {
+    path: '/:catchAll(.*)*',
+    redirect: { name: 'Default' },
   },
 ];
 
@@ -55,9 +71,17 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (!to.matched.some((record) => record.meta.requiresAuth)) {
+    if (
+      to.matched[1].meta.requiresAuth === false &&
+      store.state.session.is_logged_in
+    ) {
+      next({ name: 'Podium' });
+      return;
+    }
     next();
     return;
   }
+
   if (store.state.session.is_logged_in) {
     next();
   } else {

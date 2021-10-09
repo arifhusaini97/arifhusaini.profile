@@ -7,7 +7,7 @@ import screenModule from './modules/screen/index.js';
 export default createStore({
   state: {
     session: {
-      is_logged_in: false,
+      is_logged_in: true,
     },
   },
   mutations: screenMutations,

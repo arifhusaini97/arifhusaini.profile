@@ -11,6 +11,14 @@
       </div>
       <div class="screen__header">
         {{ header }}
+        <div class="abs left-0 mx-2r">
+          <span
+            v-if="session.is_logged_in"
+            @click="logout"
+            style="cursor: pointer"
+            >🚪</span
+          ><router-link :to="{ name: 'Login' }" v-else>🔑</router-link>
+        </div>
       </div>
       <router-view />
     </div>
@@ -30,6 +38,7 @@
 
 <script>
   import Navigation from '@/components/sub-components/Navigation';
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'Screen',
@@ -60,11 +69,21 @@
         let data = this.$store.getters['screen/getNavigationListItems'];
         return data;
       },
+
+      ...mapGetters(['session']),
     },
 
     methods: {
       activateNavigation(index) {
         console.log(index);
+      },
+
+      // ...mapActions(['logout']),
+      logout() {
+        this.$store.dispatch('logout');
+        if (this.$route.meta.requiresAuth) {
+          this.$router.push({ name: 'Login' });
+        }
       },
     },
   };
