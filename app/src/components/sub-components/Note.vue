@@ -1,8 +1,8 @@
 <template>
   <div class="note">
-    <div class="center card neumorphism form-group">
-      <h1>Note</h1>
-      <div class="form">
+    <div class="center card neumorphism">
+      <h1 class="card-header"><span>Note</span></h1>
+      <div class="card-description">
         <div class="form__note">{{ note }}</div>
       </div>
     </div>

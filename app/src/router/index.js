@@ -71,12 +71,22 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (!to.matched.some((record) => record.meta.requiresAuth)) {
-    if (
-      to.matched[1].meta.requiresAuth === false &&
-      store.state.session.is_logged_in
-    ) {
-      next({ name: 'Podium' });
-      return;
+    if (to.matched[1]) {
+      if (
+        to.matched[1].meta.requiresAuth === false &&
+        store.state.session.is_logged_in
+      ) {
+        next({ name: 'Podium' });
+        return;
+      }
+    } else {
+      if (
+        to.matched[0].meta.requiresAuth === false &&
+        store.state.session.is_logged_in
+      ) {
+        next({ name: 'Podium' });
+        return;
+      }
     }
     next();
     return;

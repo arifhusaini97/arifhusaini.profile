@@ -30,9 +30,7 @@
           </div>
         </div>
         <div class="card-candidate__description-details">
-          <!-- student with many skills and dedication who strive for the best
-          student with many skills and dedication who strive for the best
-          student with many skills and dedication who strive for the best -->
+          <!-- 15 Characters max for one word -->
           {{ person.description }}
         </div>
         <div class="card-candidate__description-voters">

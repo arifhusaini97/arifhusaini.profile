@@ -22,12 +22,14 @@
   @media only screen and (max-width: 60.9375em) {
     // 975px
     grid-template-rows:
-      0.25fr [auth-start]
+      // 0.25fr [auth-start]
+
       1fr [auth-end note-start]
       1fr [note-end];
     grid-template-columns: 1fr;
     grid-template-areas:
-      'head'
+      // 'head'
+
       'auth'
       'note';
   }
@@ -40,7 +42,8 @@
   &__head {
     grid-area: head;
     width: 70%;
-    @media only screen and (max-height: 37.5em) {
+    @media only screen and (max-height: 37.5em),
+      only screen and (max-width: 60.9375em) {
       // 600px
       display: none;
     }
