@@ -125,11 +125,16 @@
               .getComputedStyle(this.$refs.description)
               .fontSize.replace(/px/g, ''),
           );
-          let clamp = Math.floor(this.descriptionHeight() / fontSize);
+          let clamp = Math.trunc(
+            Math.round((this.descriptionHeight() / fontSize) * 10) / 10,
+          );
+          // let height = clamp + 2;
           console.log(this.descriptionHeight() / fontSize);
-          if (clamp - this.descriptionHeight() / fontSize < -0.15) {
-            clamp += 1;
+          if (clamp <= 0) {
+            clamp = 0;
           }
+          console.log('clamp-' + clamp);
+          // console.log(' height-' + height);
           this.descriptionAdditionalClass = 'clamp-' + clamp;
         }, 3000);
       },
