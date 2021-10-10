@@ -19,4 +19,35 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  &-ellipsis {
+    $line-height: 1.6;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: var(--color-white);
+    line-height: $line-height;
+    text-align: justify;
+
+    &.multiline {
+      white-space: normal;
+      max-height: 2em * $line-height;
+      position: relative;
+      &::after {
+        content: '…';
+        position: absolute;
+        display: block;
+        bottom: 0;
+        right: 0;
+        background-color: var(--color-white);
+      }
+    }
+
+    //行数指定ユーティリティClass
+    @for $i from 2 through 5 {
+      &.line-#{$i} {
+        max-height: 1em * $i * $line-height;
+      }
+    }
+  }
 }

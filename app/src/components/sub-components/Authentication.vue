@@ -1,7 +1,7 @@
 <template>
   <div class="authentication">
     <form method="post">
-      <div class="center card neumorphism form-group">
+      <div class="card center form-group neumorphism">
         <h1>{{ authentication_mode.title }}</h1>
         <div class="form pt-1">
           <div class="flex-column flex-justify-content__space-around mx-1r">
@@ -78,7 +78,13 @@
               trans-a-2s
             "
             v-if="button_toggle_registration_platform">
-            <input type="date" id="birthday" name="birthday" required />
+            <input
+              id="birthday"
+              name="birthday"
+              required
+              placeholder="Birthdate"
+              type="text"
+              onfocus="(this.type='date')" />
             <div class="container">
               <input
                 v-if="button_toggle_registration_platform"
@@ -106,7 +112,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">
+        <button type="submit" class="btn btn-block btn-large btn-primary">
           Let me vote.
         </button>
         <a
@@ -132,6 +138,7 @@
         },
       };
     },
+
     methods: {
       registrationPlatform() {
         this.button_toggle_registration_platform =
@@ -147,6 +154,7 @@
 
         this.$emit('toggle-hide-notes');
       },
+
       validatePassword($event) {
         if (this.password != $event.target.value) {
           $event.target.setCustomValidity("Passwords Don't Match");

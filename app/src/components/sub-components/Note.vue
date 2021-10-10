@@ -1,6 +1,6 @@
 <template>
   <div class="note">
-    <div class="center card neumorphism">
+    <div class="card center neumorphism">
       <h1 class="card-header"><span>Note</span></h1>
       <div class="card-description">
         <div class="form__note">{{ note }}</div>

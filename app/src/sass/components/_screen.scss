@@ -140,7 +140,7 @@
     padding: 2rem 0rem;
 
     @media only screen and (max-width: 9.375em),
-      screen and (max-height: 9.375em) {
+      only screen and (max-height: 9.375em) {
       // 120px width
       // 120px height
       display: none;

@@ -20,6 +20,7 @@
     data() {
       return { hide_notes: false, expend_authentication: '' };
     },
+
     components: { Authentication, Note },
     methods: {
       toggleHideNotes() {
