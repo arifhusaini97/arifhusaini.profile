@@ -4,15 +4,22 @@
   <!-- use https://codepen.io/skwbr/pen/zqQwVZ 
   to solve description overflow issue -->
   <div class="container" :class="custom_class">
-    <div class="card-candidate glassmorphism">
-      <figure class="card-candidate__image-shape">
+    <div
+      ref="card"
+      class="card-candidate glassmorphism"
+      :class="card_candidate_style">
+      <figure
+        class="card-candidate__image-shape"
+        :class="card_candidate_image_style">
         <img
           id="profile-image"
           class="card-candidate__image"
           src="@/assets/profile_1.jpg" />
         <div class="card-candidate__image-number">{{ person.rank }}</div>
       </figure>
-      <div class="card-candidate__description">
+      <div
+        class="card-candidate__description"
+        :class="card_candidate_description_style">
         <div class="card-candidate__description-header">
           <div
             class="card-candidate__description-header-name text--single-line">
@@ -55,7 +62,12 @@
   export default {
     name: 'IndividualDetailsCard',
     data() {
-      return { descriptionAdditionalClass: '' };
+      return {
+        descriptionAdditionalClass: '',
+        card_candidate_style: 'card-candidate-row',
+        card_candidate_image_style: ' card-candidate__image-shape-row',
+        card_candidate_description_style: 'card-candidate__description-row',
+      };
     },
     props: {
       custom_class: { default: '', type: String, required: false },
@@ -114,8 +126,6 @@
             .getComputedStyle(this.$refs.description)
             .marginBottom.replace(/\D/g, ''),
         );
-
-        console.log();
         return this.$refs.description.clientHeight - marginTop - marginBottom;
       },
       screenResizeHandler() {
@@ -128,14 +138,31 @@
           let clamp = Math.trunc(
             Math.round((this.descriptionHeight() / fontSize) * 10) / 10,
           );
-          // let height = clamp + 2;
-          console.log(this.descriptionHeight() / fontSize);
-          if (clamp <= 0) {
+          clamp += 1;
+          if (clamp % 10 != 0) {
+            clamp -= Math.floor(clamp / 10);
+          } else if (clamp <= 0) {
             clamp = 0;
           }
-          console.log('clamp-' + clamp);
-          // console.log(' height-' + height);
+          console.log(clamp);
           this.descriptionAdditionalClass = 'clamp-' + clamp;
+
+          const cardHeight = this.$refs.card.clientHeight;
+          const cardWidth = this.$refs.card.clientWidth;
+
+          if (cardHeight > cardWidth) {
+            this.card_candidate_style = 'card-candidate-column';
+            this.card_candidate_image_style =
+              ' card-candidate__image-shape-column';
+            this.card_candidate_description_style =
+              'card-candidate__description-column';
+          } else {
+            this.card_candidate_style = 'card-candidate-row';
+            this.card_candidate_image_style =
+              ' card-candidate__image-shape-row';
+            this.card_candidate_description_style =
+              'card-candidate__description-row';
+          }
         }, 3000);
       },
     },
