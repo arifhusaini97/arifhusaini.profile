@@ -139,12 +139,11 @@
             Math.round((this.descriptionHeight() / fontSize) * 10) / 10,
           );
           clamp += 1;
-          if (clamp % 10 != 0) {
-            clamp -= Math.floor(clamp / 10);
+          if (clamp % 9 != 0) {
+            clamp -= Math.floor(clamp / 9);
           } else if (clamp <= 0) {
             clamp = 0;
           }
-          console.log(clamp);
           this.descriptionAdditionalClass = 'clamp-' + clamp;
 
           const cardHeight = this.$refs.card.clientHeight;
@@ -163,7 +162,7 @@
             this.card_candidate_description_style =
               'card-candidate__description-row';
           }
-        }, 3000);
+        }, 2000);
       },
     },
   };

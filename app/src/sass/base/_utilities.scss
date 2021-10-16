@@ -1,1 +1,10 @@
+.util-margin-bottom-medium {
+  margin-bottom: 4rem !important;
 
+  @include respond(tab-port) {
+    margin-bottom: 3rem !important;
+  }
+}
+.util-margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}

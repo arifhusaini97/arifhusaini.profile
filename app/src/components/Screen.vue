@@ -10,7 +10,6 @@
         </div>
       </div>
       <div class="screen__header">
-        {{ header }}
         <div class="abs left-0 mx-2r">
           <span
             v-if="session.is_logged_in"
@@ -21,9 +20,23 @@
             >🔑<small class="px-1">login</small></router-link
           >
         </div>
+        {{ header }}
+
+        <div class="abs right-0 mx-8r" v-if="session.is_logged_in">
+          <router-link :to="{ name: 'Profile' }">👦</router-link>
+        </div>
+        <div class="abs right-0 mx-4r">
+          <input
+            type="checkbox"
+            id="button-toggle-list"
+            hidden
+            :onchange="toggleModel" />
+          <label for="button-toggle-list"> <a href="#popup">🥇</a></label>
+        </div>
       </div>
       <router-view />
     </div>
+    <Popup />
     <div class="screen-broken">
       <div class="screen-broken__logo-box">
         <img
@@ -40,6 +53,7 @@
 
 <script>
   import Navigation from '@/components/sub-components/Navigation';
+  import Popup from '@/components/sub-components/Popup';
   import { mapGetters } from 'vuex';
 
   export default {
@@ -50,6 +64,7 @@
 
     components: {
       Navigation,
+      Popup,
     },
 
     data() {
@@ -86,6 +101,9 @@
         if (this.$route.meta.requiresAuth) {
           this.$router.push({ name: 'Login' });
         }
+      },
+      toggleModel($event) {
+        console.log($event);
       },
     },
   };

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Login from '@/components/screen-content/Login';
+import Profile from '@/components/screen-content/Profile';
 import Podium from '@/components/screen-content/Podium';
 import Favourite from '@/components/screen-content/Favourite';
 import VoteCenter from '@/components/screen-content/VoteCenter';
@@ -31,6 +32,15 @@ const routes = [
         component: Login,
         meta: {
           requiresAuth: false,
+        },
+      },
+
+      {
+        path: '/profile',
+        name: 'Profile',
+        component: Profile,
+        meta: {
+          requiresAuth: true,
         },
       },
       {

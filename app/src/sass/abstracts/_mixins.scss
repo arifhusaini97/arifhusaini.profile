@@ -5,7 +5,13 @@
     clear: both;
   }
 }
-
+@mixin center-with-absolute {
+  // this is use to center the content.
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 @mixin background-blue {
   background-color: #4a77d4;
   background-image: -moz-linear-gradient(180deg, #6eb6de, #4a77d4);
