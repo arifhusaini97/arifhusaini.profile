@@ -61,6 +61,26 @@
 
                 <div class="check"><div class="inside"></div></div>
               </li>
+
+              <li>
+                <input type="radio" id="option-2" name="selector" />
+                <label for="option-2">Politicians</label>
+
+                <div class="check"><div class="inside"></div></div>
+              </li>
+
+              <li>
+                <input type="radio" id="option-3" name="selector" />
+                <label for="option-3">Brands</label>
+
+                <div class="check"><div class="inside"></div></div>
+              </li>
+              <li>
+                <input type="radio" id="option-4" name="selector" />
+                <label for="option-4">Businessman</label>
+
+                <div class="check"><div class="inside"></div></div>
+              </li>
             </ul>
           </div>
         </div>
@@ -102,7 +122,7 @@
     /* height: 100px; */
 
     /* height: 100px; */
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #aaaaaa;
   }
 
   ul li input[type='radio'] {
@@ -150,11 +170,15 @@
     position: absolute;
     content: '';
     border-radius: 100%;
-    height: 15px;
-    width: 15px;
+    height: 10px;
+    width: 10px;
     margin: auto;
     transition: background 0.25s linear;
     -webkit-transition: background 0.25s linear;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   input[type='radio']:checked ~ .check {
