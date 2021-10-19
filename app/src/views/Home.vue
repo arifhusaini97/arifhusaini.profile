@@ -28,7 +28,7 @@
 
     methods: {
       functionMsg() {
-        this.helper.debug();
+        // this.helper.debug();
       },
     },
   };

@@ -36,7 +36,7 @@
       </div>
       <router-view />
     </div>
-    <Popup />
+    <Popup1 :categories="categories" />
     <div class="screen-broken">
       <div class="screen-broken__logo-box">
         <img
@@ -53,7 +53,7 @@
 
 <script>
   import Navigation from '@/components/sub-components/Navigation';
-  import Popup from '@/components/sub-components/Popup';
+  import Popup1 from '@/components/sub-components/Popup1';
   import { mapGetters } from 'vuex';
 
   export default {
@@ -64,7 +64,7 @@
 
     components: {
       Navigation,
-      Popup,
+      Popup1,
     },
 
     data() {
@@ -84,6 +84,11 @@
     computed: {
       navigation_list_items() {
         let data = this.$store.getters['screen/getNavigationListItems'];
+        return data;
+      },
+
+      categories() {
+        const data = this.$store.getters['screen/candidate/categories'];
         return data;
       },
 

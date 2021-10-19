@@ -9,6 +9,11 @@ export default createStore({
     session: {
       is_logged_in: true,
     },
+    user: {
+      fullname: 'Nur Arif Husaini Bin Norwaza',
+      username: '21020477',
+      type: 'Staff',
+    },
   },
   mutations: screenMutations,
   actions: screenActions,

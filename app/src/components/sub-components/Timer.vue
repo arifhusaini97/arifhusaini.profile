@@ -12,6 +12,10 @@
 <script>
   export default {
     name: 'Timer',
+    props: {
+      is_stop: { default: false, type: Boolean },
+      reset: { default: false, type: Boolean },
+    },
     data() {
       return {
         display: '00:00',
@@ -44,7 +48,23 @@
       },
     },
 
+    watch: {
+      reset() {
+        this.toggle = true;
+        this.restartTimer();
+        this.toggleResetOff();
+      },
+
+      is_stop() {
+        this.toggle = false;
+        this.stopTimer();
+      },
+    },
+
     methods: {
+      toggleResetOff() {
+        this.$emit('toggle-reset-off');
+      },
       startTimer() {
         // Set initial variables within function scope
         var limit;
@@ -108,6 +128,11 @@
         clearInterval(this.pomInterval);
         clearTimeout(this.pomTimeout);
         this.display = '';
+      },
+
+      stopTimer() {
+        clearInterval(this.pomInterval);
+        clearTimeout(this.pomTimeout);
       },
     },
   };

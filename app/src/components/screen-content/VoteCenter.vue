@@ -28,30 +28,80 @@
         </table>
       </div>
       <div class="vote-center__timer">
-        <Timer />
+        <Timer
+          :is_stop="is_stop"
+          :reset="is_reset_timer"
+          @toggle-reset-off="toggleResetOff" />
       </div>
       <div class="vote-center__sheet">
-        <!-- <div
-          class="
-            vote-center__sheet-candidate vote-center__sheet-candidate--active
-          ">
-          <IndividualDetailsCard
-            custom_class="card-candidate__border
-            card-candidate__border-vote
-            card-candidate__border-vote--active" />
-        </div> -->
         <div class="vote-center__sheet-candidate">
           <IndividualDetailsCard
-            custom_class="card-candidate__border card-candidate__border-vote" />
+            type="vote"
+            :is_active="false"
+            :person="candidates_sheet[round].persons[0]"
+            :key="candidates_sheet[round].persons[0].id"
+            @activate="
+              vote(
+                candidates_sheet[round].persons[0],
+                candidates_sheet[round].persons[1],
+                round,
+              )
+            " />
         </div>
         <div class="vote-center__sheet-candidate">
           <IndividualDetailsCard
-            custom_class="card-candidate__border card-candidate__border-vote" />
+            type="vote"
+            :is_active="false"
+            :person="candidates_sheet[round].persons[1]"
+            :key="candidates_sheet[round].persons[1].id"
+            @activate="
+              vote(
+                candidates_sheet[round].persons[1],
+                candidates_sheet[round].persons[0],
+                round,
+              )
+            " />
+        </div>
+
+        <div
+          v-if="is_load"
+          class="popup"
+          style="
+            opacity: 1;
+            visibility: visible;
+            position: absolute;
+            height: 100%;
+          ">
+          <div
+            class="popup__content"
+            style="
+              opacity: 1;
+              transform: translate(-50%, -50%) scale(1);
+              height: 50%;
+              width: 50%;
+              background-color: var(--color-primary-1);
+              border-radius: 1rem;
+            ">
+            <div
+              class="popup__center"
+              style="
+                color: var(--color-white-dark);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+              ">
+              {{ loading_notes }}
+            </div>
+          </div>
         </div>
       </div>
       <div class="vote-center__paginator">
-        <span class="vote-center__paginator-current">1</span
-        ><span class="vote-center__paginator-total">10</span>
+        <span class="vote-center__paginator-current">{{ round + 1 }}</span
+        ><span class="vote-center__paginator-total">{{
+          candidates_sheet.length
+        }}</span>
       </div>
     </div>
   </div>
@@ -63,6 +113,60 @@
   export default {
     name: 'VoteCenter',
     components: { Timer, IndividualDetailsCard },
+    data() {
+      return {
+        round: 0,
+        is_stop: false,
+        is_reset_timer: false,
+        is_load: false,
+        load_timeout: 4000,
+        loading_notes: 'Loading ',
+      };
+    },
+    computed: {
+      candidates_sheet() {
+        const data = this.$store.getters['screen/candidate/candidates_sheet'];
+
+        // console.log(data[0].persons[1]);
+        return data;
+      },
+    },
+
+    methods: {
+      vote(person_win, person_lose, round) {
+        this.is_stop = true;
+        this.is_load = true;
+        var loading = setInterval(() => {
+          if (this.loading_notes.includes('...')) {
+            this.loading_notes = 'Loading ';
+          } else {
+            this.loading_notes += '.';
+          }
+        }, 1000);
+
+        this.$store
+          .dispatch('screen/candidate/setVote', {
+            payload: { person_win, person_lose, round },
+          })
+          .then(() => {
+            if (this.round < this.candidates_sheet.length - 1) {
+              // do something before proceed to next round.
+              setTimeout(() => {
+                this.is_reset_timer = true;
+                this.is_stop = false;
+                this.is_load = false;
+                clearInterval(loading);
+                this.loading_notes = 'Loading ';
+
+                this.round++;
+              }, this.load_timeout);
+            }
+          });
+      },
+      toggleResetOff() {
+        this.is_reset_timer = false;
+      },
+    },
   };
 </script>
 

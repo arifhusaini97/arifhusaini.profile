@@ -41,6 +41,10 @@
     transform: translate(-50%, -50%) scale(0.25);
     transition: all 0.25s 0.2s;
   }
+  &__center {
+    width: 100%;
+    display: table-cell;
+  }
 
   &__left {
     width: 33.33333333%;

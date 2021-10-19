@@ -59,15 +59,15 @@
     border-radius: 1rem;
   }
 
-  &:hover {
-    &:before {
-      background-size: 200% $width, $width 400%, $width 400%, 55% $width,
-        55% $width;
-      background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
-      transform: scaleX(1) rotate(180deg * $direction);
-      transition-delay: 0s, $duration, $duration * 2;
-    }
-  }
+  // &:hover {
+  //   &:before {
+  //     background-size: 200% $width, $width 400%, $width 400%, 55% $width,
+  //       55% $width;
+  //     background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
+  //     transform: scaleX(1) rotate(180deg * $direction);
+  //     transition-delay: 0s, $duration, $duration * 2;
+  //   }
+  // }
   &--active {
     &:before {
       background-size: 200% $width, $width 400%, $width 400%, 55% $width,

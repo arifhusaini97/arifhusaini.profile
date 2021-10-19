@@ -12,74 +12,16 @@
           class="popup__img" />
       </div>
       <div class="popup__right">
-        <!-- Now this will target the section-tours 
-        make the popup:target doesn't applied -->
-        <!-- <a href="#section-tours" class="popup__close">&times;</a> -->
-        <!-- <h2 class="heading-secondary util-margin-bottom-medium">
-          Start booking now
-        </h2>
-        <h3 class="heading-tertiary util-margin-bottom-small">
-          Important &ndash; please read these terms before booking
-        </h3> -->
-        <!-- <p class="popup__text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-          delectus ut molestias nostrum. Inventore aliquam architecto, nulla ea
-          at incidunt iste maxime? Dolorum perspiciatis veniam, vel voluptate
-          quibusdam ad adipisci?Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Deserunt delectus ut molestias nostrum. Inventore
-          aliquam architecto, nulla ea at incidunt iste maxime? Dolorum
-          perspiciatis veniam, vel voluptate quibusdam ad adipisci?
-        </p> -->
         <div class="util-margin-bottom-small">
           <div>
             <h2 class="util-margin-bottom-small">View ranking for:</h2>
 
             <ul>
-              <li>
-                <input type="radio" id="option-1" name="selector" />
-                <label for="option-1">Artists</label>
+              <li v-for="category in categories" :key="category.id">
+                <input type="radio" :id="category.id" name="selector" />
+                <label :for="category.id">{{ category.name }}</label>
 
                 <div class="check"></div>
-              </li>
-
-              <li>
-                <input type="radio" id="option-2" name="selector" />
-                <label for="option-2">Politicians</label>
-
-                <div class="check"><div class="inside"></div></div>
-              </li>
-
-              <li>
-                <input type="radio" id="option-3" name="selector" />
-                <label for="option-3">Brands</label>
-
-                <div class="check"><div class="inside"></div></div>
-              </li>
-              <li>
-                <input type="radio" id="option-4" name="selector" />
-                <label for="option-4">Businessman</label>
-
-                <div class="check"><div class="inside"></div></div>
-              </li>
-
-              <li>
-                <input type="radio" id="option-2" name="selector" />
-                <label for="option-2">Politicians</label>
-
-                <div class="check"><div class="inside"></div></div>
-              </li>
-
-              <li>
-                <input type="radio" id="option-3" name="selector" />
-                <label for="option-3">Brands</label>
-
-                <div class="check"><div class="inside"></div></div>
-              </li>
-              <li>
-                <input type="radio" id="option-4" name="selector" />
-                <label for="option-4">Businessman</label>
-
-                <div class="check"><div class="inside"></div></div>
               </li>
             </ul>
           </div>
@@ -92,7 +34,15 @@
 
 <script>
   export default {
-    name: 'Popup',
+    name: 'Popup1',
+    props: {
+      categories: {
+        type: Array,
+        default: () => {
+          return [{ id: 1, name: 'Artist' }];
+        },
+      },
+    },
   };
 </script>
 
