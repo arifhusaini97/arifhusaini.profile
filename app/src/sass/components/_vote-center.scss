@@ -54,25 +54,39 @@
   &__sheet {
     height: 100%;
     grid-column: 1/-1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-around;
+    // align-items: center;
     width: 100%;
     position: relative;
 
-    // @media only screen and (max-width: 67.5em) and (min-height: 37.5em) {
-    @media only screen and (max-width: 37.5em) and (min-height: 37.5em) {
-      // max width: 600px;
-      // min-height:600px;
-
+    &-start {
+      display: flex;
       flex-direction: column;
-    }
-
-    &-candidate {
+      justify-content: center;
+      align-items: center;
       height: 100%;
-      width: 100%;
-      padding: 2.5rem;
+    }
+    &-run {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      // @media only screen and (max-width: 67.5em) and (min-height: 37.5em) {
+      @media only screen and (max-width: 37.5em) and (min-height: 37.5em) {
+        // max width: 600px;
+        // min-height:600px;
+
+        flex-direction: column;
+      }
+
+      &-candidate {
+        height: 100%;
+        width: 100%;
+        padding: 2.5rem;
+      }
     }
   }
   &__paginator {

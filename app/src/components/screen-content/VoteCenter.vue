@@ -34,34 +34,69 @@
           @toggle-reset-off="toggleResetOff" />
       </div>
       <div class="vote-center__sheet">
-        <div class="vote-center__sheet-candidate">
-          <IndividualDetailsCard
-            type="vote"
-            :is_active="false"
-            :person="candidates_sheet[round].persons[0]"
-            :key="candidates_sheet[round].persons[0].id"
-            @activate="
-              vote(
-                candidates_sheet[round].persons[0],
-                candidates_sheet[round].persons[1],
-                round,
-              )
-            " />
+        <div
+          v-if="vote_status === 0"
+          class="vote-center__sheet-start card center form-group neumorphism"
+          style="width: 100%">
+          <h1 class="card-header"><span>Welcome!</span></h1>
+          <div class="card-description">
+            <div class="form__note">
+              <span>{{ note }}</span>
+              <button
+                type="submit"
+                class="btn btn-block btn-large btn-primary mt-4r"
+                @click="updateVoteStatus(1)">
+                Let's start!
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="vote-center__sheet-candidate">
-          <IndividualDetailsCard
-            type="vote"
-            :is_active="false"
-            :person="candidates_sheet[round].persons[1]"
-            :key="candidates_sheet[round].persons[1].id"
-            @activate="
-              vote(
-                candidates_sheet[round].persons[1],
-                candidates_sheet[round].persons[0],
-                round,
-              )
-            " />
+        <div v-else-if="vote_status === 1" class="vote-center__sheet-run">
+          <div class="vote-center__sheet-run-candidate">
+            <IndividualDetailsCard
+              type="vote"
+              :is_active="false"
+              :person="candidates_sheet[round].persons[0]"
+              :key="candidates_sheet[round].persons[0].id"
+              @activate="
+                vote(
+                  candidates_sheet[round].persons[0],
+                  candidates_sheet[round].persons[1],
+                  round,
+                )
+              " />
+          </div>
+          <div class="vote-center__sheet-run-candidate">
+            <IndividualDetailsCard
+              type="vote"
+              :is_active="false"
+              :person="candidates_sheet[round].persons[1]"
+              :key="candidates_sheet[round].persons[1].id"
+              @activate="
+                vote(
+                  candidates_sheet[round].persons[1],
+                  candidates_sheet[round].persons[0],
+                  round,
+                )
+              " />
+          </div>
         </div>
+        <div
+          v-else-if="vote_status === 2"
+          class="vote-center__sheet-end card center form-group neumorphism"
+          style="width: 100%">
+          <h1 class="card-header"><span>Thank You!</span></h1>
+          <div class="card-description">
+            <div class="form__note">
+              Your vote have been submitted! You may be able to make a vote for
+              this category once every 6 hours (
+              <span style="color: red"> 6 hours left</span> for another vote ).
+            </div>
+          </div>
+        </div>
+        <div
+          v-else-if="vote_status === -1"
+          class="vote-center__sheet-warning"></div>
 
         <div
           v-if="is_load"
@@ -121,6 +156,9 @@
         is_load: false,
         load_timeout: 4000,
         loading_notes: 'Loading ',
+        vote_status: 0,
+        note: `This is a vote center. You may put your vote to any of 
+        the available option as you like.`,
       };
     },
     computed: {
@@ -132,7 +170,21 @@
       },
     },
 
+    mounted() {
+      this.is_stop = true;
+    },
+
     methods: {
+      updateVoteStatus(value) {
+        this.vote_status = value;
+        if (value === 1) {
+          this.is_stop = false;
+          this.is_reset_timer = true;
+        } else if (value !== 1) {
+          this.is_reset_timer = true;
+          this.is_stop = true;
+        }
+      },
       vote(person_win, person_lose, round) {
         this.is_stop = true;
         this.is_load = true;
@@ -152,13 +204,21 @@
             if (this.round < this.candidates_sheet.length - 1) {
               // do something before proceed to next round.
               setTimeout(() => {
-                this.is_reset_timer = true;
                 this.is_stop = false;
+                this.is_reset_timer = true;
                 this.is_load = false;
                 clearInterval(loading);
                 this.loading_notes = 'Loading ';
 
                 this.round++;
+              }, this.load_timeout);
+            } else {
+              setTimeout(() => {
+                this.is_load = false;
+                clearInterval(loading);
+                this.loading_notes = 'Loading ';
+
+                this.updateVoteStatus(2);
               }, this.load_timeout);
             }
           });
