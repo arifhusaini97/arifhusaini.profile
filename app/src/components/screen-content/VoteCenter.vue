@@ -31,7 +31,8 @@
         <Timer
           :is_stop="is_stop"
           :reset="is_reset_timer"
-          @toggle-reset-off="toggleResetOff" />
+          @toggle-reset-off="toggleResetOff"
+          @skip-timeout="skipTimeout" />
       </div>
       <div class="vote-center__sheet">
         <div
@@ -56,13 +57,13 @@
             <IndividualDetailsCard
               type="vote"
               :is_active="false"
-              :person="candidates_sheet[round].persons[0]"
-              :key="candidates_sheet[round].persons[0].id"
+              :person="candidates_sheet_active[index].persons[0]"
+              :key="candidates_sheet_active[index].persons[0].id"
               @activate="
                 vote(
-                  candidates_sheet[round].persons[0],
-                  candidates_sheet[round].persons[1],
-                  round,
+                  candidates_sheet_active[index].persons[0],
+                  candidates_sheet_active[index].persons[1],
+                  candidates_sheet_active[index].id,
                 )
               " />
           </div>
@@ -70,13 +71,13 @@
             <IndividualDetailsCard
               type="vote"
               :is_active="false"
-              :person="candidates_sheet[round].persons[1]"
-              :key="candidates_sheet[round].persons[1].id"
+              :person="candidates_sheet_active[index].persons[1]"
+              :key="candidates_sheet_active[index].persons[1].id"
               @activate="
                 vote(
-                  candidates_sheet[round].persons[1],
-                  candidates_sheet[round].persons[0],
-                  round,
+                  candidates_sheet_active[index].persons[1],
+                  candidates_sheet_active[index].persons[0],
+                  candidates_sheet_active[index].id,
                 )
               " />
           </div>
@@ -88,8 +89,8 @@
           <h1 class="card-header"><span>Thank You!</span></h1>
           <div class="card-description">
             <div class="form__note">
-              Your vote have been submitted! You may be able to make a vote for
-              this category once every 6 hours (
+              Your vote have been submitted! You can make a vote for this
+              category once every 6 hours only (
               <span style="color: red"> 6 hours left</span> for another vote ).
             </div>
           </div>
@@ -132,8 +133,10 @@
           </div>
         </div>
       </div>
-      <div class="vote-center__paginator">
-        <span class="vote-center__paginator-current">{{ round + 1 }}</span
+      <div v-if="vote_status === 1" class="vote-center__paginator">
+        <span class="vote-center__paginator-current">{{
+          candidates_sheet_active[index].id
+        }}</span
         ><span class="vote-center__paginator-total">{{
           candidates_sheet.length
         }}</span>
@@ -150,6 +153,7 @@
     components: { Timer, IndividualDetailsCard },
     data() {
       return {
+        index: 0,
         round: 0,
         is_stop: false,
         is_reset_timer: false,
@@ -157,8 +161,8 @@
         load_timeout: 4000,
         loading_notes: 'Loading ',
         vote_status: 0,
-        note: `This is a vote center. You may put your vote to any of 
-        the available option as you like.`,
+        note: `This is a vote center. You may put your vote to any of
+          the available option as you like.`,
       };
     },
     computed: {
@@ -167,6 +171,9 @@
 
         // console.log(data[0].persons[1]);
         return data;
+      },
+      candidates_sheet_active() {
+        return this.candidates_sheet.filter((x) => x.is_done === false);
       },
     },
 
@@ -185,7 +192,7 @@
           this.is_stop = true;
         }
       },
-      vote(person_win, person_lose, round) {
+      vote(person_win, person_lose, candidates_sheet_id) {
         this.is_stop = true;
         this.is_load = true;
         var loading = setInterval(() => {
@@ -198,33 +205,72 @@
 
         this.$store
           .dispatch('screen/candidate/setVote', {
-            payload: { person_win, person_lose, round },
+            payload: {
+              person_win,
+              person_lose,
+            },
           })
           .then(() => {
-            if (this.round < this.candidates_sheet.length - 1) {
-              // do something before proceed to next round.
-              setTimeout(() => {
-                this.is_stop = false;
-                this.is_reset_timer = true;
-                this.is_load = false;
-                clearInterval(loading);
-                this.loading_notes = 'Loading ';
-
-                this.round++;
-              }, this.load_timeout);
-            } else {
-              setTimeout(() => {
-                this.is_load = false;
-                clearInterval(loading);
-                this.loading_notes = 'Loading ';
-
-                this.updateVoteStatus(2);
-              }, this.load_timeout);
-            }
+            this.sheetTransition(loading, 'vote', candidates_sheet_id);
           });
+      },
+      sheetTransition(loading, type, candidates_sheet_id) {
+        if (this.candidates_sheet_active.length === 1 && type === 'vote') {
+          setTimeout(() => {
+            this.is_load = false;
+            clearInterval(loading);
+            this.loading_notes = 'Loading ';
+
+            this.updateVoteStatus(2);
+          }, this.load_timeout);
+        } else {
+          // do something before proceed to next round.
+          setTimeout(() => {
+            this.is_stop = false;
+            this.is_reset_timer = true;
+            this.is_load = false;
+            clearInterval(loading);
+            this.loading_notes = 'Loading ';
+
+            if (type === 'vote') {
+              if (this.index > 0) {
+                this.index--;
+              }
+
+              this.$store.dispatch('screen/candidate/setVoteDone', {
+                payload: {
+                  candidates_sheet_id,
+                },
+              });
+            } else if (type === 'timeout') {
+              if (
+                this.candidates_sheet_active.length !== 0 &&
+                this.index + 1 >= this.candidates_sheet_active.length
+              ) {
+                this.index = 0;
+              } else {
+                this.index++;
+              }
+            }
+
+            this.round++;
+          }, this.load_timeout);
+        }
       },
       toggleResetOff() {
         this.is_reset_timer = false;
+      },
+      skipTimeout() {
+        this.is_stop = true;
+        this.is_load = true;
+        var loading = setInterval(() => {
+          if (this.loading_notes.includes('...')) {
+            this.loading_notes = 'Loading ';
+          } else {
+            this.loading_notes += '.';
+          }
+        }, 1000);
+        this.sheetTransition(loading, 'timeout', null);
       },
     },
   };

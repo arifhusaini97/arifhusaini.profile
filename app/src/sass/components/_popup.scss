@@ -40,6 +40,8 @@
 
     transform: translate(-50%, -50%) scale(0.25);
     transition: all 0.25s 0.2s;
+
+    border: 5px solid var(--color-primary-1);
   }
   &__center {
     width: 100%;

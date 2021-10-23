@@ -19,8 +19,8 @@
     data() {
       return {
         display: '00:00',
-        timer: 2 / 6,
-        rest: 1,
+        timer: 1 / 12,
+        rest: 1 / 12,
         toggle: true,
         barStyle: '',
         pomInterval: null,
@@ -114,6 +114,7 @@
           clearInterval(this.pomInterval);
           this.sound.play();
           this.startTimer();
+          this.$emit('skip-timeout');
         }, limit * 60000);
       },
 

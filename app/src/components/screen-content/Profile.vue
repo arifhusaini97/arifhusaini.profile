@@ -1,5 +1,5 @@
 <template>
-  <div class="screen__content p-5">
+  <div class="screen__content p-2">
     <div class="authentication">
       <form method="post">
         <div class="card center form-group neumorphism">

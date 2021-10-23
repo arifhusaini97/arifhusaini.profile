@@ -58,6 +58,8 @@ export default {
     candidates_favorite: [],
     candidates_sheet: [
       {
+        id: 1,
+        is_done: false,
         persons: [
           {
             id: 1,
@@ -112,6 +114,8 @@ export default {
         ],
       },
       {
+        id: 2,
+        is_done: false,
         persons: [
           {
             id: 3,

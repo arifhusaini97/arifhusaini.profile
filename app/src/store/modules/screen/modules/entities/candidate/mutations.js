@@ -13,38 +13,30 @@ export default {
     state.categories = data.result;
   },
 
+  SET_vote_done: (state, data) => {
+    state.candidates_sheet.find(
+      (x) => x.id === data.candidates_sheet_id,
+    ).is_done = true;
+  },
+
   SET_vote: (state, data) => {
     let array = state.candidates_round_rank;
-    if (array.length === 0) {
-      data.person_win.voted++;
-      data.person_win.local.total_round++;
-      data.person_win.local.total_cumulative_win++;
 
-      data.person_win.global.total_round++;
-      data.person_win.global.total_cumulative_win++;
+    data.person_win.voted++;
 
-      data.person_lose.local.total_round++;
-      data.person_lose.local.total_cumulative_lose++;
+    data.person_win.local.total_round++;
+    data.person_win.local.total_cumulative_win++;
 
-      data.person_lose.global.total_round++;
-      data.person_lose.global.total_cumulative_lose++;
+    data.person_win.global.total_round++;
+    data.person_win.global.total_cumulative_win++;
 
-      array.push(data.person_win);
-    } else {
-      data.person_win.voted++;
+    data.person_lose.local.total_round++;
+    data.person_lose.local.total_cumulative_lose++;
 
-      data.person_win.local.total_round++;
-      data.person_win.local.total_cumulative_win++;
+    data.person_lose.global.total_round++;
+    data.person_lose.global.total_cumulative_lose++;
 
-      data.person_win.global.total_round++;
-      data.person_win.global.total_cumulative_win++;
-
-      data.person_lose.local.total_round++;
-      data.person_lose.local.total_cumulative_lose++;
-
-      data.person_lose.global.total_round++;
-      data.person_lose.global.total_cumulative_lose++;
-
+    if (array.length !== 0) {
       const index_win = array.findIndex((x) => x.id === data.person_win.id);
       if (index_win !== -1) {
         array.splice(index_win, 1);

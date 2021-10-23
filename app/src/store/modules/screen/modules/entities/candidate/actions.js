@@ -33,4 +33,8 @@ export default {
   setVote: async ({ commit }, { payload }) => {
     commit('SET_vote', payload);
   },
+
+  setVoteDone: async ({ commit }, { payload }) => {
+    commit('SET_vote_done', payload);
+  },
 };
