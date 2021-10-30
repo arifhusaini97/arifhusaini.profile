@@ -37,4 +37,26 @@ export default {
   setVoteDone: async ({ commit }, { payload }) => {
     commit('SET_vote_done', payload);
   },
+
+  setNewRound: async ({ commit, state }) => {
+    let flag = false;
+    let point = null;
+    console.log(state.candidates_round_rank);
+    for (const x in state.candidates_round_rank) {
+      if (point === null) {
+        point = state.candidates_round_rank[x].local.total_point;
+      } else if (point === state.candidates_round_rank[x].local.total_point) {
+        flag = true;
+        break;
+      } else {
+        point = state.candidates_round_rank[x].local.total_point;
+      }
+    }
+    if (flag) {
+      commit('SET_new_round');
+      return { is_done_entirely: false };
+    } else {
+      return { is_done_entirely: true };
+    }
+  },
 };

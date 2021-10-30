@@ -22,12 +22,14 @@ export default {
           total_round: 0,
           total_cumulative_win: 0,
           total_cumulative_lose: 0,
+          total_point: 0,
         },
 
         global: {
           total_round: 20,
           total_cumulative_win: 10,
           total_cumulative_lose: 10,
+          total_point: 0,
         },
       },
       {
@@ -46,12 +48,14 @@ export default {
           total_round: 0,
           total_cumulative_win: 0,
           total_cumulative_lose: 0,
+          total_point: 0,
         },
 
         global: {
           total_round: 20,
           total_cumulative_win: 8,
           total_cumulative_lose: 12,
+          total_point: -4,
         },
       },
     ],
@@ -78,12 +82,14 @@ export default {
               total_round: 0,
               total_cumulative_win: 0,
               total_cumulative_lose: 0,
+              total_point: 0,
             },
 
             global: {
               total_round: 20,
               total_cumulative_win: 10,
               total_cumulative_lose: 10,
+              total_point: 0,
             },
           },
           {
@@ -103,12 +109,14 @@ export default {
               total_round: 0,
               total_cumulative_win: 0,
               total_cumulative_lose: 0,
+              total_point: 0,
             },
 
             global: {
               total_round: 20,
               total_cumulative_win: 8,
               total_cumulative_lose: 12,
+              total_point: -4,
             },
           },
         ],
@@ -134,12 +142,14 @@ export default {
               total_round: 0,
               total_cumulative_win: 0,
               total_cumulative_lose: 0,
+              total_point: 0,
             },
 
             global: {
               total_round: 18,
               total_cumulative_win: 6,
               total_cumulative_lose: 12,
+              total_point: -6,
             },
           },
           {
@@ -159,12 +169,74 @@ export default {
               total_round: 0,
               total_cumulative_win: 0,
               total_cumulative_lose: 0,
+              total_point: 0,
             },
 
             global: {
               total_round: 15,
               total_cumulative_win: 5,
               total_cumulative_lose: 10,
+              total_point: -5,
+            },
+          },
+        ],
+      },
+      {
+        id: 3,
+        is_done: false,
+        persons: [
+          {
+            id: 5,
+            rank: 5,
+            username: 'khairul',
+            represent: {
+              flag: '🏳',
+              name: 'Klang',
+            },
+
+            description: `this is a description`,
+
+            voted: 0,
+
+            local: {
+              total_round: 0,
+              total_cumulative_win: 0,
+              total_cumulative_lose: 0,
+              total_point: 0,
+            },
+
+            global: {
+              total_round: 18,
+              total_cumulative_win: 6,
+              total_cumulative_lose: 12,
+              total_point: -6,
+            },
+          },
+          {
+            id: 6,
+            rank: 6,
+            username: 'jamil',
+            represent: {
+              flag: '🏳',
+              name: 'Kuala Terengganu',
+            },
+
+            description: `this is a description`,
+
+            voted: 0,
+
+            local: {
+              total_round: 0,
+              total_cumulative_win: 0,
+              total_cumulative_lose: 0,
+              total_point: 0,
+            },
+
+            global: {
+              total_round: 15,
+              total_cumulative_win: 5,
+              total_cumulative_lose: 10,
+              total_point: -5,
             },
           },
         ],

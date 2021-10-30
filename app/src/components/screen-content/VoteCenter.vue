@@ -52,13 +52,15 @@
             </div>
           </div>
         </div>
-        <div v-else-if="vote_status === 1" class="vote-center__sheet-run">
+        <div
+          v-else-if="vote_status === 1 && candidates_sheet_active.length > 0"
+          class="vote-center__sheet-run">
           <div class="vote-center__sheet-run-candidate">
             <IndividualDetailsCard
               type="vote"
               :is_active="false"
               :person="candidates_sheet_active[index].persons[0]"
-              :key="candidates_sheet_active[index].persons[0].id"
+              :key="candidates_sheet_active[index].persons[0].id + round"
               @activate="
                 vote(
                   candidates_sheet_active[index].persons[0],
@@ -72,7 +74,7 @@
               type="vote"
               :is_active="false"
               :person="candidates_sheet_active[index].persons[1]"
-              :key="candidates_sheet_active[index].persons[1].id"
+              :key="candidates_sheet_active[index].persons[1].id + round"
               @activate="
                 vote(
                   candidates_sheet_active[index].persons[1],
@@ -132,8 +134,49 @@
             </div>
           </div>
         </div>
+        <div
+          v-if="is_new_round"
+          class="popup"
+          style="
+            opacity: 1;
+            visibility: visible;
+            position: absolute;
+            height: 100%;
+          ">
+          <div
+            class="popup__content"
+            style="
+              opacity: 1;
+              transform: translate(-50%, -50%) scale(1);
+              height: 50%;
+              width: 50%;
+              background-color: var(--color-primary-1);
+              border-radius: 1rem;
+            ">
+            <div
+              class="popup__center"
+              style="
+                color: var(--color-white-dark);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+              ">
+              <span>Round {{ round + 1 }}</span>
+              <button
+                type="submit"
+                class="btn btn-block btn-large btn-primary mt-4r"
+                @click="roundStartFn()">
+                Start Now!
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div v-if="vote_status === 1" class="vote-center__paginator">
+      <div
+        v-if="vote_status === 1 && candidates_sheet_active.length > 0"
+        class="vote-center__paginator">
         <span class="vote-center__paginator-current">{{
           candidates_sheet_active[index].id
         }}</span
@@ -153,13 +196,15 @@
     components: { Timer, IndividualDetailsCard },
     data() {
       return {
-        index: 0,
+        roundStart: null,
+        index: null,
         round: 0,
         is_stop: false,
         is_reset_timer: false,
         is_load: false,
-        load_timeout: 4000,
-        loading_notes: 'Loading ',
+        is_new_round: false,
+        load_timeout: 3000,
+        loading_notes: 'Loading .',
         vote_status: 0,
         note: `This is a vote center. You may put your vote to any of
           the available option as you like.`,
@@ -177,14 +222,30 @@
       },
     },
 
+    watch: {
+      roundStart(newVal) {
+        if (newVal === true) {
+          this.is_stop = true;
+          this.is_new_round = true;
+        }
+      },
+    },
+
     mounted() {
       this.is_stop = true;
     },
 
     methods: {
+      roundStartFn() {
+        this.is_stop = false;
+        this.is_reset_timer = true;
+        this.is_new_round = false;
+      },
       updateVoteStatus(value) {
         this.vote_status = value;
         if (value === 1) {
+          this.roundStart = true;
+          this.index = 0;
           this.is_stop = false;
           this.is_reset_timer = true;
         } else if (value !== 1) {
@@ -197,7 +258,7 @@
         this.is_load = true;
         var loading = setInterval(() => {
           if (this.loading_notes.includes('...')) {
-            this.loading_notes = 'Loading ';
+            this.loading_notes = 'Loading .';
           } else {
             this.loading_notes += '.';
           }
@@ -219,9 +280,32 @@
           setTimeout(() => {
             this.is_load = false;
             clearInterval(loading);
-            this.loading_notes = 'Loading ';
+            this.loading_notes = 'Loading .';
 
-            this.updateVoteStatus(2);
+            if (this.index > 0) {
+              this.index--;
+            }
+
+            this.$store.dispatch('screen/candidate/setVoteDone', {
+              payload: {
+                candidates_sheet_id,
+              },
+            });
+
+            this.$store
+              .dispatch('screen/candidate/setNewRound')
+              .then((response) => {
+                if (response.is_done_entirely === true) {
+                  this.roundStart = false;
+                  this.updateVoteStatus(2);
+                } else {
+                  this.index = 0;
+                  this.round++;
+                  this.is_stop = false;
+                  this.is_reset_timer = true;
+                  this.roundStart = true;
+                }
+              });
           }, this.load_timeout);
         } else {
           // do something before proceed to next round.
@@ -230,8 +314,9 @@
             this.is_reset_timer = true;
             this.is_load = false;
             clearInterval(loading);
-            this.loading_notes = 'Loading ';
+            this.loading_notes = 'Loading .';
 
+            this.roundStart = false;
             if (type === 'vote') {
               if (this.index > 0) {
                 this.index--;
@@ -252,8 +337,6 @@
                 this.index++;
               }
             }
-
-            this.round++;
           }, this.load_timeout);
         }
       },
@@ -265,7 +348,7 @@
         this.is_load = true;
         var loading = setInterval(() => {
           if (this.loading_notes.includes('...')) {
-            this.loading_notes = 'Loading ';
+            this.loading_notes = 'Loading .';
           } else {
             this.loading_notes += '.';
           }
