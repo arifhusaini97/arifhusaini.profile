@@ -272,7 +272,6 @@
     computed: {
       filters() {
         let data = this.$store.getters['screen/candidate/filters'];
-        console.log(data);
         return data;
       },
     },
