@@ -36,4 +36,20 @@ export default {
       },
     });
   },
+  getSubCategories(payload) {
+    return Client.get(`${resource}/subcategories`, {
+      params: {
+        skipCount: payload.first,
+        takeCount: payload.rows,
+      },
+    });
+  },
+  getTopics(payload) {
+    return Client.get(`${resource}/topics`, {
+      params: {
+        skipCount: payload.first,
+        takeCount: payload.rows,
+      },
+    });
+  },
 };

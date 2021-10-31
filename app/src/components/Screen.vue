@@ -31,12 +31,19 @@
             id="button-toggle-list"
             hidden
             :onchange="toggleModel" />
-          <label for="button-toggle-list"> <a href="#popup">🥇</a></label>
+          <label for="button-toggle-list">
+            <a href="javascript:;" @click="show_hide_popup">🥇</a></label
+          >
         </div>
       </div>
       <router-view />
     </div>
-    <Popup1 :categories="categories" />
+    <Popup1
+      v-if="is_show_popup_1 || is_show_popup_2"
+      :categories="categories"
+      :sub_categories="sub_categories"
+      :topics="topics"
+      @show-hide="show_hide_popup" />
     <div class="screen-broken">
       <div class="screen-broken__logo-box">
         <img
@@ -68,7 +75,7 @@
     },
 
     data() {
-      return { header2: 'test' };
+      return { is_show_popup_2: null };
     },
 
     created() {
@@ -79,9 +86,25 @@
           }
         }
       });
+
+      this.is_show_popup_2 = this.is_show_popup_1;
     },
 
     computed: {
+      is_show_popup_1() {
+        let data = this.filters
+          ? this.filters.category &&
+            this.filters.sub_category &&
+            this.filters.topic
+            ? false
+            : true
+          : true;
+        return data;
+      },
+      filters() {
+        let data = this.$store.getters['screen/candidate/filters'];
+        return data;
+      },
       navigation_list_items() {
         let data = this.$store.getters['screen/getNavigationListItems'];
         return data;
@@ -89,6 +112,16 @@
 
       categories() {
         const data = this.$store.getters['screen/candidate/categories'];
+        return data;
+      },
+
+      sub_categories() {
+        const data = this.$store.getters['screen/candidate/sub_categories'];
+        return data;
+      },
+
+      topics() {
+        const data = this.$store.getters['screen/candidate/topics'];
         return data;
       },
 
@@ -109,6 +142,9 @@
       },
       toggleModel($event) {
         console.log($event);
+      },
+      show_hide_popup() {
+        this.is_show_popup_2 = !this.is_show_popup_2;
       },
     },
   };

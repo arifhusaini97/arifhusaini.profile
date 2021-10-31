@@ -25,6 +25,9 @@ const routes = [
   {
     name: 'Home',
     component: Home,
+    meta: {
+      requiresFilters: true,
+    },
     children: [
       {
         path: '/login',
@@ -80,6 +83,17 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresFilters)) {
+    if (
+      to.matched[0].meta.requiresFilters &&
+      store.state.screen.candidate.filters.category === null &&
+      store.state.screen.candidate.filters.sub_category === null &&
+      store.state.screen.candidate.filters.topic === null
+    ) {
+      console.log('need Filter');
+    }
+  }
+
   if (!to.matched.some((record) => record.meta.requiresAuth)) {
     if (to.matched[1]) {
       if (

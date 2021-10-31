@@ -8,6 +8,14 @@ export default {
     commit('SET_candidates_ranked', response.data.result);
   },
 
+  setFilters: async ({ commit }, { payload }) => {
+    commit('SET_filters', payload);
+  },
+
+  resetFilters: async ({ commit }) => {
+    commit('RESET_filters');
+  },
+
   getCandidatesFavorite: async ({ commit }, { lazyParams }) => {
     var response = await repository.getCandidatesFavorite(lazyParams);
     console.log(response.data.result);
@@ -24,6 +32,18 @@ export default {
     var response = await repository.getCategories(lazyParams);
     console.log(response.data.result);
     commit('SET_categories', response.data.result);
+  },
+
+  getSubCategories: async ({ commit }, { lazyParams }) => {
+    var response = await repository.getSubCategories(lazyParams);
+    console.log(response.data.result);
+    commit('SET_sub_categories', response.data.result);
+  },
+
+  getTopics: async ({ commit }, { lazyParams }) => {
+    var response = await repository.getTopics(lazyParams);
+    console.log(response.data.result);
+    commit('SET_topics', response.data.result);
   },
 
   setFavorite: async ({ commit }, { payload }) => {

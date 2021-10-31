@@ -1,4 +1,54 @@
 export default {
+  SET_filters: (state, data) => {
+    state.filters = data;
+
+    localStorage.removeItem('filters');
+    localStorage.setItem(
+      'filters',
+      JSON.stringify({
+        category: data.category,
+        sub_category: data.sub_category,
+        topic: data.topic,
+      }),
+    );
+  },
+  RESET_filters: (state) => {
+    if (state.filters.topic) {
+      state.filters.topic = null;
+      if (localStorage.getItem('filters')) {
+        if (JSON.parse(localStorage.getItem('filters'))['sub_category']) {
+          localStorage.setItem(
+            'filters',
+            JSON.stringify({
+              category: JSON.parse(localStorage.getItem('filters'))[
+                'category'
+              ],
+              sub_category: JSON.parse(localStorage.getItem('filters'))[
+                'sub_category'
+              ],
+            }),
+          );
+        }
+      }
+    } else if (state.filters.sub_category) {
+      state.filters.sub_category = null;
+      if (localStorage.getItem('filters')) {
+        if (JSON.parse(localStorage.getItem('filters'))['category']) {
+          localStorage.setItem(
+            'filters',
+            JSON.stringify({
+              category: JSON.parse(localStorage.getItem('filters'))[
+                'category'
+              ],
+            }),
+          );
+        }
+      }
+    } else if (state.filters.category) {
+      state.filters.category = null;
+      localStorage.removeItem('filters');
+    }
+  },
   SET_candidates_ranked: (state, data) => {
     state.candidates_ranked = data.result;
   },
@@ -11,6 +61,14 @@ export default {
 
   SET_categories: (state, data) => {
     state.categories = data.result;
+  },
+
+  SET_sub_categories: (state, data) => {
+    state.sub_categories = data.result;
+  },
+
+  SET_topics: (state, data) => {
+    state.topics = data.result;
   },
 
   SET_vote_done: (state, data) => {

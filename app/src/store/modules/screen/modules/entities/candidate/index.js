@@ -5,6 +5,18 @@ import getters from './getters.js';
 export default {
   namespaced: true, // put true if want enable modules
   state: {
+    filters: {
+      category: localStorage.getItem('filters')
+        ? JSON.parse(localStorage.getItem('filters'))['category']
+        : null,
+      sub_category: localStorage.getItem('filters')
+        ? JSON.parse(localStorage.getItem('filters'))['sub_category']
+        : null,
+      topic: localStorage.getItem('filters')
+        ? JSON.parse(localStorage.getItem('filters'))['topic']
+        : null,
+    },
+
     candidates_ranked: [
       {
         id: 1,
@@ -259,6 +271,34 @@ export default {
       {
         id: 4,
         name: 'States',
+      },
+    ],
+    sub_categories: [
+      {
+        id: 1,
+        name: 'Malaysia',
+      },
+      {
+        id: 2,
+        name: 'Korea',
+      },
+      {
+        id: 3,
+        name: 'India',
+      },
+      {
+        id: 4,
+        name: 'America',
+      },
+    ],
+    topics: [
+      {
+        id: 1,
+        name: 'Popularity (General)',
+      },
+      {
+        id: 2,
+        name: 'Popularity (Attitude)',
       },
     ],
   },

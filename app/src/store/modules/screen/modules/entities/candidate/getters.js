@@ -11,4 +11,13 @@ export default {
   categories: (state) => {
     return state.categories;
   },
+  sub_categories: (state) => {
+    return state.sub_categories;
+  },
+  topics: (state) => {
+    return state.topics;
+  },
+  filters: (state) => {
+    return state.filters;
+  },
 };
