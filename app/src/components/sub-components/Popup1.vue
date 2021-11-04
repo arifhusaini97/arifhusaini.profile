@@ -229,7 +229,7 @@
               left: 50%;
               transform: translate(-50%, 0%);
             ">
-            View Now!
+            Apply!
           </button>
         </VeeForm>
       </div>
@@ -247,12 +247,14 @@
           return [{ id: 1, name: 'Artist' }];
         },
       },
+
       sub_categories: {
         type: Array,
         default: () => {
           return [{ id: 1, name: 'Malaysia' }];
         },
       },
+
       topics: {
         type: Array,
         default: () => {
@@ -260,6 +262,7 @@
         },
       },
     },
+
     data() {
       return {
         category_schema: {
@@ -269,16 +272,19 @@
         },
       };
     },
+
     computed: {
       filters() {
         let data = this.$store.getters['screen/candidate/filters'];
         return data;
       },
     },
+
     methods: {
       revert() {
         this.$store.dispatch('screen/candidate/resetFilters');
       },
+
       applyFilter(value) {
         this.$emit('show-hide');
         this.$store.dispatch('screen/candidate/setFilters', {

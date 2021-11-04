@@ -5,6 +5,7 @@ import getters from './getters.js';
 export default {
   namespaced: true, // put true if want enable modules
   state: {
+    round: 0,
     filters: {
       category: localStorage.getItem('filters')
         ? JSON.parse(localStorage.getItem('filters'))['category']

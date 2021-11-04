@@ -20,4 +20,7 @@ export default {
   filters: (state) => {
     return state.filters;
   },
+  round: (state) => {
+    return state.round;
+  },
 };

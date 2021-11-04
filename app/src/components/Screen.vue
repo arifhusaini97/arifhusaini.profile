@@ -22,10 +22,10 @@
         </div>
         {{ header }}
 
-        <div class="abs right-0 mx-8r" v-if="session.is_logged_in">
+        <div class="abs mx-8r right-0" v-if="session.is_logged_in">
           <router-link :to="{ name: 'Profile' }">👦</router-link>
         </div>
-        <div class="abs right-0 mx-4r">
+        <div class="abs mx-4r right-0">
           <input
             type="checkbox"
             id="button-toggle-list"
@@ -101,10 +101,12 @@
           : true;
         return data;
       },
+
       filters() {
         let data = this.$store.getters['screen/candidate/filters'];
         return data;
       },
+
       navigation_list_items() {
         let data = this.$store.getters['screen/getNavigationListItems'];
         return data;
@@ -130,7 +132,7 @@
 
     methods: {
       activateNavigation(index) {
-        console.log(index);
+        console.log('activateNavigation: ' + index);
       },
 
       // ...mapActions(['logout']),
@@ -140,9 +142,11 @@
           this.$router.push({ name: 'Login' });
         }
       },
+
       toggleModel($event) {
         console.log($event);
       },
+
       show_hide_popup() {
         this.is_show_popup_2 = !this.is_show_popup_2;
       },

@@ -61,7 +61,7 @@ export default {
   setNewRound: async ({ commit, state }) => {
     let flag = false;
     let point = null;
-    console.log(state.candidates_round_rank);
+
     for (const x in state.candidates_round_rank) {
       if (point === null) {
         point = state.candidates_round_rank[x].local.total_point;

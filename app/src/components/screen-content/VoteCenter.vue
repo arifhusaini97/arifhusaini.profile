@@ -37,7 +37,7 @@
       <div class="vote-center__sheet">
         <div
           v-if="vote_status === 0"
-          class="vote-center__sheet-start card center form-group neumorphism"
+          class="card center form-group neumorphism vote-center__sheet-start"
           style="width: 100%">
           <h1 class="card-header"><span>Welcome!</span></h1>
           <div class="card-description">
@@ -60,7 +60,12 @@
               type="vote"
               :is_active="false"
               :person="candidates_sheet_active[index].persons[0]"
-              :key="candidates_sheet_active[index].persons[0].id + round"
+              :key="
+                'i' +
+                candidates_sheet_active[index].persons[0].id +
+                'r' +
+                round
+              "
               @activate="
                 vote(
                   candidates_sheet_active[index].persons[0],
@@ -74,7 +79,12 @@
               type="vote"
               :is_active="false"
               :person="candidates_sheet_active[index].persons[1]"
-              :key="candidates_sheet_active[index].persons[1].id + round"
+              :key="
+                'i' +
+                candidates_sheet_active[index].persons[1].id +
+                'r' +
+                round
+              "
               @activate="
                 vote(
                   candidates_sheet_active[index].persons[1],
@@ -86,7 +96,7 @@
         </div>
         <div
           v-else-if="vote_status === 2"
-          class="vote-center__sheet-end card center form-group neumorphism"
+          class="card center form-group neumorphism vote-center__sheet-end"
           style="width: 100%">
           <h1 class="card-header"><span>Thank You!</span></h1>
           <div class="card-description">
@@ -198,7 +208,6 @@
       return {
         roundStart: null,
         index: null,
-        round: 0,
         is_stop: false,
         is_reset_timer: false,
         is_load: false,
@@ -210,13 +219,19 @@
           the available option as you like.`,
       };
     },
+
     computed: {
       candidates_sheet() {
         const data = this.$store.getters['screen/candidate/candidates_sheet'];
 
-        // console.log(data[0].persons[1]);
         return data;
       },
+
+      round() {
+        const data = this.$store.getters['screen/candidate/round'];
+        return data;
+      },
+
       candidates_sheet_active() {
         return this.candidates_sheet.filter((x) => x.is_done === false);
       },
@@ -240,7 +255,9 @@
         this.is_stop = false;
         this.is_reset_timer = true;
         this.is_new_round = false;
+        this.roundStart = false;
       },
+
       updateVoteStatus(value) {
         this.vote_status = value;
         if (value === 1) {
@@ -253,6 +270,7 @@
           this.is_stop = true;
         }
       },
+
       vote(person_win, person_lose, candidates_sheet_id) {
         this.is_stop = true;
         this.is_load = true;
@@ -275,6 +293,7 @@
             this.sheetTransition(loading, 'vote', candidates_sheet_id);
           });
       },
+
       sheetTransition(loading, type, candidates_sheet_id) {
         if (this.candidates_sheet_active.length === 1 && type === 'vote') {
           setTimeout(() => {
@@ -300,7 +319,6 @@
                   this.updateVoteStatus(2);
                 } else {
                   this.index = 0;
-                  this.round++;
                   this.is_stop = false;
                   this.is_reset_timer = true;
                   this.roundStart = true;
@@ -316,7 +334,6 @@
             clearInterval(loading);
             this.loading_notes = 'Loading .';
 
-            this.roundStart = false;
             if (type === 'vote') {
               if (this.index > 0) {
                 this.index--;
@@ -340,9 +357,11 @@
           }, this.load_timeout);
         }
       },
+
       toggleResetOff() {
         this.is_reset_timer = false;
       },
+
       skipTimeout() {
         this.is_stop = true;
         this.is_load = true;

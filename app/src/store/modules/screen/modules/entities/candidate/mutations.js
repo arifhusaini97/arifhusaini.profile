@@ -169,6 +169,7 @@ export default {
     state.candidates_sheet = [];
     let candidates_sheet_settle = [];
     let index = 0;
+    state.round += 1;
     for (let x = 0; x < state.candidates_round_rank.length; x += 2) {
       if (state.candidates_round_rank[x + 1]) {
         if (
