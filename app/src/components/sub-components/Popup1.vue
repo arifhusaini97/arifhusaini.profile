@@ -38,7 +38,6 @@
                       background-color: brown;
                       border-radius: 2rem;
                       padding: 0.5rem;
-                      margin-right: 1rem;
                       width: 33%;
                     ">
                     <span
@@ -54,7 +53,6 @@
                       background-color: brown;
                       border-radius: 2rem;
                       padding: 0.5rem;
-                      margin-right: 1rem;
                       width: 33%;
                     ">
                     <span
@@ -70,7 +68,6 @@
                       background-color: brown;
                       border-radius: 2rem;
                       padding: 0.5rem;
-                      margin-right: 1rem;
                       width: 34%;
                     ">
                     <span

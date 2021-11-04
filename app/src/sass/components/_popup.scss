@@ -31,8 +31,9 @@
   }
 
   &__content {
-    width: 85%;
-    height: 50rem;
+    width: 75%;
+    // max-height: 25vh;
+    // height: 50rem;
     background-color: var(--color-white-dark);
     box-shadow: 0 2rem 4rem rgba(var(--color-black), 0.2);
     border-radius: 3px;
@@ -86,10 +87,11 @@
   &__img {
     display: block;
     width: 25em;
+    height: 14em;
     object-fit: cover;
     @include respond(tab-land) {
       width: 17.5em;
-      height: 16.5em;
+      height: 12em;
     }
     @include respond(tab-port) {
       width: 50%;
