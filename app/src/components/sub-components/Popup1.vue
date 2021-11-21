@@ -1,6 +1,6 @@
 <template>
-  <div class="popup" id="popup">
-    <div class="popup__content">
+  <div class="popup" id="popup" :style="popup_style">
+    <div class="popup__content" :style="content_style">
       <div class="popup__left">
         <img
           src="@/assets/img/rank-1.jpg"
@@ -257,6 +257,16 @@
         default: () => {
           return [{ id: 1, name: 'Popularity (General)' }];
         },
+      },
+
+      content_style: {
+        type: String,
+        default: '',
+      },
+
+      popup_style: {
+        type: String,
+        default: '',
       },
     },
 

@@ -39,7 +39,16 @@
       <router-view />
     </div>
     <Popup1
-      v-if="is_show_popup_1 || is_show_popup_2"
+      :popup_style="
+        is_show_popup_1 || is_show_popup_2
+          ? 'opacity:1; visibility:visible;'
+          : ''
+      "
+      :content_style="
+        is_show_popup_1 || is_show_popup_2
+          ? 'opacity:1; transform: translate(-50%, -50%) scale(1);'
+          : ''
+      "
       :categories="categories"
       :sub_categories="sub_categories"
       :topics="topics"

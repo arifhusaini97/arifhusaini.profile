@@ -76,6 +76,7 @@ export default {
       commit('SET_new_round');
       return { is_done_entirely: false };
     } else {
+      console.log(state.candidates_round_rank);
       return { is_done_entirely: true };
     }
   },

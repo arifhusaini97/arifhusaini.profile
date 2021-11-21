@@ -13,11 +13,11 @@
   backdrop-filter: blur(10px);
 
   // should use this instead of display:none; because display:none can`t be animated;
-  // opacity: 0;
-  // visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 
-  opacity: 1;
-  visibility: visible;
+  // opacity: 1;
+  // visibility: visible;
 
   // check whether the browser support it or not
   @supports (-webkit-backdrop-filter: blur(10px)) or
@@ -32,7 +32,7 @@
 
   &__content {
     width: 75%;
-    // max-height: 25vh;
+
     // height: 50rem;
     background-color: var(--color-white-dark);
     box-shadow: 0 2rem 4rem rgba(var(--color-black), 0.2);
@@ -44,15 +44,15 @@
     top: 50%;
     left: 50%;
 
-    transition: all 0.25s 0.2s;
+    transition: all 0.25s;
 
     border: 5px solid var(--color-primary-1);
 
-    // opacity: 0;
-    // transform: translate(-50%, -50%) scale(0.25);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25);
 
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    // opacity: 1;
+    // transform: translate(-50%, -50%) scale(1);
   }
   &__center {
     width: 100%;
@@ -87,7 +87,10 @@
   &__img {
     display: block;
     width: 25em;
+
     height: 14em;
+    // max-height: 50%;
+    // max-width: 80%;
     object-fit: cover;
     @include respond(tab-land) {
       width: 17.5em;
